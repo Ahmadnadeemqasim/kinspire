@@ -21,4 +21,7 @@
 
 # Ignore local developer scripts.
 /lib/local/*
+
+# Ignore documentation. Create documentation locally.
+/doc/*
   
