@@ -8,14 +8,17 @@
 config/database.yml
 config/secrets.yml
 
-# Ignore bundler config.
-/.bundle
-
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+
+# Ignore documentation. Create documentation locally.
+/doc/*
+
+# Ignore bundler config.
+/.bundle
 
 # Ignore RVM gemset directive.
 .ruby-gemset
@@ -25,7 +28,3 @@ config/secrets.yml
 
 # Ignore local developer scripts.
 /lib/local/*
-
-# Ignore documentation. Create documentation locally.
-/doc/*
-  
