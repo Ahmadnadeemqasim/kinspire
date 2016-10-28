@@ -15,13 +15,14 @@ class UserAccountTest < ActiveSupport::TestCase
     assert_not @user_account.valid?
   end
 
-  test "email should not be too long" do
-    valid_email = "a" * 244 + "@empire.gov"
-    invalid_email = "a" * 245 + "@empire.gov"
+  test "email should be limited to a reasonable length" do
+    # Length limit is 255.
 
+    valid_email = "a" * 244 + "@empire.gov"
     @user_account.email = valid_email
     assert @user_account.valid?
 
+    invalid_email = "a" * 245 + "@empire.gov"
     @user_account.email = invalid_email
     assert_not @user_account.valid?
   end
