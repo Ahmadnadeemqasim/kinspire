@@ -26,4 +26,20 @@ class UserAccountTest < ActiveSupport::TestCase
     @user_account.email = invalid_email
     assert_not @user_account.valid?
   end
+
+  test "email should be required to match a basic email format" do
+    valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
+                         first.last@foo.jp alice+bob@baz.cn]
+    valid_addresses.each do |valid_address|
+      @user_account.email = valid_address
+      assert @user_account.valid?
+    end
+
+    invalid_addresses = %w[user@example,com user_at_foo.org user.name@example.
+                           foo@bar_baz.com foo@bar+baz.com user@example..com]
+    invalid_addresses.each do |invalid_address|
+      @user_account.email = invalid_address
+      assert_not @user_account.valid?, "#{invalid_address.inspect} should be invalid"
+    end
+  end
 end
