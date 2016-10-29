@@ -48,4 +48,11 @@ class UserAccountTest < ActiveSupport::TestCase
     duplicate_user_account.email = @user_account.email.upcase # uniqueness validation should be case-insensitive
     assert_not duplicate_user_account.valid?
   end
+
+  test "email should be saved in lower case" do
+    mixed_case_email = "FaThEr@SkYwAlKeR.cOm"
+    @user_account.email = mixed_case_email
+    @user_account.save
+    assert_equal mixed_case_email.downcase, @user_account.reload.email
+  end
 end
