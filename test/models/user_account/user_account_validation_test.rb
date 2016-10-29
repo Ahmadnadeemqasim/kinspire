@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserAccountTest < ActiveSupport::TestCase
+class UserAccountValidationTest < ActiveSupport::TestCase
 
   def setup
     @user_account = UserAccount.new(  email: "masterchief@unsc.mil",
