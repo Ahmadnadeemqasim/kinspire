@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   root  'static_pages#index'
   get   '/signup',            to: 'user_accounts#new'
+  resources :user_accounts
 end
