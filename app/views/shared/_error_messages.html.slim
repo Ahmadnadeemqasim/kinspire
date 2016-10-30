@@ -1,0 +1,5 @@
+- if @user_account.errors.any?
+  div The form contains #{ pluralize( @user_account.errors.count, "error" ) }.
+  ul
+    - @user_account.errors.full_messages.each do |msg|
+      li = msg

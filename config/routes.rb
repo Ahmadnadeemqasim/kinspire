@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   root  'static_pages#index'
   get   '/signup',            to: 'user_accounts#new'
+  post  '/signup',            to: 'user_accounts#create'
   resources :user_accounts
 end
