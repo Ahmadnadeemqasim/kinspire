@@ -7,6 +7,7 @@ class UserAccountsController < ApplicationController
   def create
     @user_account = UserAccount.new( user_account_params )
     if @user_account.save
+      log_in @user_account
       redirect_to @user_account
     else
       render 'new'
