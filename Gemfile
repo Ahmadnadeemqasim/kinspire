@@ -2,10 +2,8 @@ source 'https://rubygems.org'
 
 ##
 # Sort gems in this file alphabetically by gem name.
+# An exact version should be provided for every gem.
 #
-# An exact version should be provided for every gem. There is no reason to allow changes in behevior into the system without a specific need.
-#
-
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt',                   '3.1.11'
@@ -38,7 +36,7 @@ gem 'puma',                     '3.6.0'
 gem 'sass-rails',               '5.0.6'
 
 # Use Slim for HTML templates.
-gem 'slim',                     '3.0.7'
+gem 'slim-rails',               '3.1.1'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
