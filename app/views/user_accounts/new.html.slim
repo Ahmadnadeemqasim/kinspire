@@ -3,21 +3,20 @@ h2 Sign Up
 = form_for( @user_account, url: signup_path ) do |f|
   = render 'shared/error_messages'
 
-  ul
-    li
-      = f.label :email
-    li
-      = f.email_field :email
-
-    li
-      = f.label :password
-    li
-      = f.password_field :password
-
-    li
-      = f.label :password_confirmation, "Confirm Password"
-    li
-      = f.password_field :password_confirmation
-
-    li
-      = f.submit "Sign Up"
+  ul    
+    = f.label :email
+    br
+    = f.email_field :email
+    br
+  
+    = f.label :password
+    br
+    = f.password_field :password
+    br
+  
+    = f.label :password_confirmation, "Confirm Password"
+    br
+    = f.password_field :password_confirmation
+    br
+  
+    = f.submit "Sign Up"
