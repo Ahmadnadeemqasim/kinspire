@@ -66,5 +66,11 @@ group :development, :test do
   gem 'byebug',                 '9.0.6', platform: :mri
 end
 
+
+group :test do
+  # Use 'assigns' and 'assert_template' in tests to check what HTML is rendered.
+  gem 'rails-controller-testing', '1.0.1'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
