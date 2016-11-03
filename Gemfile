@@ -68,6 +68,9 @@ end
 
 
 group :test do
+  # Use minitest-reporters for improved test output.
+  gem 'minitest-reporters',       '1.1.12'
+
   # Use 'assigns' and 'assert_template' in tests to check what HTML is rendered.
   gem 'rails-controller-testing', '1.0.1'
 end
