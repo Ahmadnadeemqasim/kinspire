@@ -4,7 +4,7 @@ module Company
   ##
   # Returns the hash of company strings.
 
-  def self.strings
+  def Company.strings
     return @@strings
   end
 end
