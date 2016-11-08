@@ -4,7 +4,7 @@ class UserAccountValidationTest < ActiveSupport::TestCase
 
   def setup
     @user_account = UserAccount.new(  email: "masterchief@unsc.mil",
-                                      password: "!@Cd5678", password_confirmation: "!@Cd5678" )
+                                      password: standard_password, password_confirmation: standard_password )
   end
 
   test "the test user should be valid by default" do
@@ -70,7 +70,7 @@ class UserAccountValidationTest < ActiveSupport::TestCase
   end
 
   test "password and password_confirmation should be required to match" do
-    valid_password = "!@Cd5678"
+    valid_password = standard_password
     @user_account.password = @user_account.password_confirmation = valid_password
     assert @user_account.valid?
     @user_account.password_confirmation = valid_password + "a"
@@ -78,13 +78,13 @@ class UserAccountValidationTest < ActiveSupport::TestCase
   end
 
   test "password should have a minimum length" do
-    # Minimum length is 8.
+    min_length = 8
 
-    valid_password = "!@Cd5678"
+    valid_password = standard_password[0, min_length]
     @user_account.password = @user_account.password_confirmation = valid_password
     assert @user_account.valid?
 
-    invalid_password = "!@Cd567"
+    invalid_password = valid_password[0, min_length-1]
     @user_account.password = @user_account.password_confirmation = invalid_password
     assert_not @user_account.valid?, "New UserAccount with password under the minimum length should not be valid."
   end

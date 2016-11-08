@@ -25,7 +25,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
 
     post login_path, params: { session: { email: @user_account.email, password: @password } }
     assert is_logged_in?,                 "Successful login should log the user in immediately."
-    assert_redirected_to @user_account,    "Successful login should redirect to the user's account homepage."
+    assert_redirected_to @user_account,   "Successful login should redirect to the user's account homepage."
     follow_redirect!
     assert_template 'user_accounts/show', "Successful login should render the user's show page."
 

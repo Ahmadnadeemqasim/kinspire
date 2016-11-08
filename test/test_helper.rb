@@ -11,6 +11,8 @@ Minitest::Reporters.use!
 ActiveRecord::FixtureSet.context_class.send :include, TestPasswordHelper
 
 class ActiveSupport::TestCase
+  include TestPasswordHelper
+  
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 

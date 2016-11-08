@@ -17,7 +17,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
 
   test "user submits valid signup data" do
     email     = "valid@email.com"
-    password  = "password"
+    password  = standard_password
 
     get signup_path
     assert_response :success, "Visit signup path unsucessful."
