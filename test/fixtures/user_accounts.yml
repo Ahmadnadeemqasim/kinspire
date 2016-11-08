@@ -2,4 +2,4 @@
 
 vader:
   email: darth.vader@empire.gov
-  password_digest: <%= UserAccount.digest( "imURfatha!" ) %>
+  password_digest: <%= password_digest( "imURfatha!" ) %>
