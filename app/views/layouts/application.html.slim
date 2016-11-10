@@ -2,25 +2,18 @@ doctype html
 head
   title = html_title( yield :page_title )
   = csrf_meta_tags
-
   = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
   = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 
-  /[if lt IE 9]
-    = javascript_include_tag 'ie8', 'data-turbolinks-track': 'reload'
+  / IE8 and HTML5 backwards-compatability.
+  = render 'layouts/ie8'
+
+  / Enable Bootstrap mobile-first responsiveness.
+  meta name="viewport" content="width=device-width, initial-scale=1"
 
 body
-  header
-    h1 = link_to "Kinspire", root_path
-
-    - if logged_in?
-      = link_to "Log Out", logout_path, method: :delete
-    - else
-      = link_to "Sign Up", signup_path
-      br
-      = link_to "Log In", login_path
-
-  div
+  = render 'layouts/header'
+  div.container
     = yield
 
-  = debug(params) if Rails.env.development?
+    = debug(params) if Rails.env.development?

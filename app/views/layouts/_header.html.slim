@@ -1,0 +1,19 @@
+header.navbar.navbar-fixed-top.navbar-default
+  div.container
+
+    / Branding and toggle menu.
+    div.navbar-header
+      a.navbar-brand.navbar-left href=root_path
+        span#logo.glyphicon.glyphicon-tree-deciduous
+        | Kinspire
+      button.navbar-toggle.collapsed data-toggle="collapse" data-target="#navbar-menu" aria-expanded="false"
+        | Menu
+
+    / Content for toggling.
+    nav#navbar-menu.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        - if logged_in?
+          li = link_to "Log Out", logout_path, method: :delete
+        - else
+          li = link_to "Sign Up", signup_path
+          li = link_to "Log In", login_path
