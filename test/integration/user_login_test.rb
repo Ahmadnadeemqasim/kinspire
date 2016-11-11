@@ -30,10 +30,10 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert_template 'user_accounts/show', "Successful login should render the user's show page."
 
     delete logout_path
-    assert_not is_logged_in?,             "Visiting the logout path should log the user out immediately."
-    assert_redirected_to root_url,        "Visiting the logout path should redirect to the application homepage."
+    assert_not is_logged_in?,                 "Visiting the logout path should log the user out immediately."
+    assert_redirected_to root_url,            "Visiting the logout path should redirect to the application homepage."
     follow_redirect!
-    assert_template 'static_pages/index', "Visiting the logout path should render the application homepage."
+    assert_template 'static_pages/homepage',  "Visiting the logout path should render the application homepage."
   end
 
   test "email is not case-sensitive at login" do

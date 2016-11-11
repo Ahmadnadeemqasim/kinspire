@@ -13,7 +13,7 @@ head
 
 body
   = render 'layouts/header'
-  div.container
+  div#main.container-fluid
     = yield
 
-    = debug(params) if Rails.env.development?
+    / = debug(params) if Rails.env.development?

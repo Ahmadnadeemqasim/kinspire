@@ -1,0 +1,25 @@
+#homepage {
+  position: relative;
+
+  section {
+    height: 100%;
+    position: relative;
+    vertical-align: middle;
+  }
+
+  section#welcome {
+    background-color: lightblue;
+  }
+
+  section#helpers-1 {
+    background-color: indianred;
+  }
+
+  section#helpers-2 {
+    background-color: lightgreen;
+  }
+
+  section#employers-1 {
+    background-color: lightyellow;
+  }
+}

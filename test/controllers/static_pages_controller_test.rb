@@ -7,7 +7,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     # Should have the correct HTML title.
-    assert_select "title", "Index | Kinspire"
+    assert_select "title", "Home | Kinspire"
   end
 
 end
