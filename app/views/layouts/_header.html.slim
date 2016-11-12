@@ -15,6 +15,6 @@ header.navbar.navbar-fixed-top.navbar-default
         - if logged_in?
           li = link_to "Log Out", logout_path, method: :delete
         - else
-          li = link_to "Immigrants", "#helpers-1"
           li = link_to "Employers", "#employers-1"
+          li = link_to "Immigrants", "#helpers-1"
           li = link_to "Log In", login_path
