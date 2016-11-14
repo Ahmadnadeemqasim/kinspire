@@ -1,14 +1,15 @@
+##
+# Facilitate simulating secure passwords in tests.
+
+require 'crypto'
+
 module TestPasswordHelper
-  ##
-  # Facilitate simulating secure passwords in tests.
   
   ##
   # Return the hash digest of the given string.
 
   def password_digest( string )
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
+    Crypto.secure_digest( string )
   end
 
   ##
