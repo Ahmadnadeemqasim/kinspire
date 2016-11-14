@@ -1,3 +1,6 @@
+##
+# Provide data about the company.
+
 module Company
   @@strings = { company_name: "Kinspire" }
 
