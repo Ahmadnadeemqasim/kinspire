@@ -4,7 +4,7 @@
 module Crypto
 
   ##
-  # Return the hash digest of the given string.
+  # Return a randomized secure digest of the given string.
   # This function should be suitable for hashing secure passwords.
 
   def Crypto.secure_digest( string )
