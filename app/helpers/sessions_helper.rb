@@ -1,8 +1,8 @@
 module SessionsHelper
 
   ##
-  # Returns the currently logged-in user account, if any.
-  # Returns nil if no user is logged in.
+  # Return the currently logged-in user account, if any.
+  # Return nil if no user is logged in.
   # In order to avoid hitting the database with every call, this method memoizes
   # the result to an instance variable.
 
@@ -11,14 +11,14 @@ module SessionsHelper
   end
 
   ##
-  # Logs in the given user account.
+  # Log in the given user account.
 
   def log_in( user_account )
     session[:user_account_id] = user_account.id
   end
 
   ##
-  # Logs out the current user.
+  # Log out the current user.
 
   def log_out
     session.delete( :user_account_id )
@@ -26,9 +26,18 @@ module SessionsHelper
   end
 
   ##
-  # Returns true if the current user is logged in, false otherwise.
+  # Return true if the current user is logged in, false otherwise.
 
   def logged_in?
     !current_user_account.nil?
+  end
+
+  ##
+  # Keeps the user logged in between sessions.
+
+  def remember_login( user_account )
+    user_account.remember_login
+    cookies.permanent[:remember_login_token] = user_account.remember_login_token
+    cookies.permanent.signed[:user_account_id] = user_account.id
   end
 end
