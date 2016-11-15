@@ -21,6 +21,15 @@ module SessionsHelper
   end
 
   ##
+  # Stop user login from persisting between sessions.
+
+  def forget_login( user_account )
+    user_account.forget_login
+    cookies.delete( :remember_login_token )
+    cookies.delete( :user_account_id )
+  end
+
+  ##
   # Log in the given user account.
 
   def log_in( user_account )
@@ -31,6 +40,7 @@ module SessionsHelper
   # Log out the current user.
 
   def log_out
+    forget_login( current_user_account )
     session.delete( :user_account_id )
     @current_user_account = nil
   end
@@ -43,7 +53,7 @@ module SessionsHelper
   end
 
   ##
-  # Keeps the user logged in between sessions.
+  # Keep the user logged in between sessions.
 
   def remember_login( user_account )
     user_account.remember_login

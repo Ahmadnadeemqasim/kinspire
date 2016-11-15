@@ -30,6 +30,18 @@ class SessionsHelperTest < ActionView::TestCase
   end
 
   ##
+  # #forget_login
+
+  test "function forget_login should forget the given user's login and clear the remember token and account id cookies" do
+    remember_login( @user_account )
+    @user_account.reload
+    forget_login( @user_account )
+    assert_nil @user_account.remember_login_digest, "User account did not forget login digest."
+    assert_nil cookies[:remember_login_token],      "Remember login token was not cleared from cookies."
+    assert_nil cookies[:user_account_id],           "User account id was not cleared from cookies."
+  end
+
+  ##
   # #log_in
 
   test "function log_in should create a session for the given user account and log it in" do
@@ -47,6 +59,13 @@ class SessionsHelperTest < ActionView::TestCase
     log_out
     assert_nil session[:user_account_id], "Log out did not remove the current user account from the session hash."
     assert_nil current_user_account,      "Log out did not remove the current user account."
+  end
+
+  test "function log_out should forget the rememebered user" do
+    remember_login( @user_account )
+    assert_equal @user_account, current_user_account
+    log_out
+    assert_nil current_user_account, "Log out did not forget the remembered user."
   end
 
   ##

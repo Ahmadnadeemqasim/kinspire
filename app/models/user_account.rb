@@ -20,6 +20,13 @@ class UserAccount < ApplicationRecord
   end
 
   ##
+  # Clear the digest that remembers account login.
+
+  def forget_login
+    update_attribute :remember_login_digest, nil
+  end
+
+  ##
   # Update token and digest for remembering account login.
 
   def remember_login
