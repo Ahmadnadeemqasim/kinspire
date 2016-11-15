@@ -8,11 +8,25 @@ class SessionsHelperTest < ActionView::TestCase
   ##
   # #current_user
 
-  test "function current_user_account should return the currently logged-in user if any, otherwise nil" do
+  test "function current_user_account should return the currently logged-in user if any" do
     assert_nil session[:user_account_id]
     assert_nil current_user_account
     log_in( @user_account )
     assert_equal current_user_account, @user_account, "Function does not return the currently logged-in user."
+  end
+
+  test "function current_user_account should return the remembered user if it exists and no user account is logged in" do
+    assert_nil current_user_account
+    remember_login( @user_account )
+    assert_nil session[:user_account_id]
+    assert_equal current_user_account, @user_account, "Function does not return the remembered user."
+  end
+
+  test "function current_user_account should log in the remembered user if it exists and no user account is logged in" do
+    assert_nil current_user_account
+    remember_login( @user_account )
+    current_user_account
+    assert_not_nil session[:user_account_id]
   end
 
   ##
@@ -55,6 +69,8 @@ class SessionsHelperTest < ActionView::TestCase
     remember_login( @user_account )
     assert_not_nil @user_account.remember_login_token,
       "UserAccount remember_login_token was not generated."
+    assert_not_nil @user_account.remember_login_digest,
+      "UserAccount remember_login_digest was not generated."
     assert_equal  @user_account.remember_login_token, cookies[:remember_login_token],
       "Remember user login does not populate cookies hash with remember token."
     assert_equal  @user_account.id,                   cookies.signed[:user_account_id],

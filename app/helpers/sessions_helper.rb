@@ -1,13 +1,23 @@
 module SessionsHelper
 
   ##
-  # Return the currently logged-in user account, if any.
-  # Return nil if no user is logged in.
+  # Return the currently logged-in user account.
+  # If no user account is logged in, return the currently remembered user account.
+  # If no user is logged in or remembered, return nil.
   # In order to avoid hitting the database with every call, this method memoizes
   # the result to an instance variable.
 
   def current_user_account
-    @current_user_account ||= UserAccount.find_by( id: session[:user_account_id] )
+    if user_account_id = session[:user_account_id]
+      @current_user_account ||= UserAccount.find_by( id: user_account_id )
+    elsif user_account_id = cookies.signed[:user_account_id]
+      user_account = UserAccount.find_by( id: user_account_id )
+      if user_account && user_account.authentic_remember_login_token?( 
+                                      cookies[:remember_login_token] )
+        log_in user_account
+        @current_user_account = user_account
+      end
+    end
   end
 
   ##
