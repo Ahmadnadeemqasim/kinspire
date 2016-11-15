@@ -3,13 +3,13 @@
 
 require 'crypto'
 
-module TestPasswordHelper
+module TestUserAccountSecurityHelper
   
   ##
-  # Return the hash digest of the given string.
+  # Return a secure digest of the given password.
 
-  def password_digest( string )
-    Crypto.secure_digest( string )
+  def password_digest( password )
+    Crypto.secure_digest( password )
   end
 
   ##
@@ -20,7 +20,7 @@ module TestPasswordHelper
   end
 
   ##
-  # Return the hash digest of the standard password.
+  # Return a secure digest of the standard password.
 
   def standard_password_digest
     password_digest( default_password )

@@ -2,16 +2,16 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'minitest/reporters'
 require 'rails/test_help'
-require 'test_password_helper'
+require 'test_user_account_security_helper'
 
 # Use minitest-reporters for test output.
 Minitest::Reporters.use!
 
 # Allow simulating secure passwords in fixtures.
-ActiveRecord::FixtureSet.context_class.send :include, TestPasswordHelper
+ActiveRecord::FixtureSet.context_class.send :include, TestUserAccountSecurityHelper
 
 class ActiveSupport::TestCase
-  include TestPasswordHelper
+  include TestUserAccountSecurityHelper
   
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
