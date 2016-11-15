@@ -1,5 +1,5 @@
 ##
-# Facilitate simulating secure passwords in tests.
+# Facilitate simulating secure authentication in tests.
 
 require 'crypto'
 
@@ -10,6 +10,12 @@ module TestUserAccountSecurityHelper
 
   def password_digest( password )
     Crypto.secure_digest( password )
+  end
+
+  ## Return a random token.
+
+  def random_token
+    SecureRandom.urlsafe_base64
   end
 
   ##

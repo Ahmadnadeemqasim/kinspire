@@ -13,6 +13,13 @@ class UserAccount < ApplicationRecord
                         allow_nil: true
 
   ##
+  # Authenticate the user account remembered login against the given token.
+
+  def authentic_remember_login_token?( remember_login_token )
+    BCrypt::Password.new( remember_login_digest ).is_password?( remember_login_token )
+  end
+
+  ##
   # Update token and digest for remembering account login.
 
   def remember_login
@@ -21,7 +28,7 @@ class UserAccount < ApplicationRecord
   end
 
   ##
-  # Generate a randomized secure token suitable for authentication purposes.
+  # Generate a randomized secure token suitable for account authentication purposes.
 
   def UserAccount.new_token
     SecureRandom.urlsafe_base64

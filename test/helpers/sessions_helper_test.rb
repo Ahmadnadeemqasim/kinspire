@@ -23,13 +23,13 @@ class SessionsHelperTest < ActionView::TestCase
     assert_equal current_user_account, @user_account
     log_out
     assert_nil session[:user_account_id], "Log out did not remove the current user account from the session hash."
-    assert_nil current_user_account, "Log out did not remove the current user."
+    assert_nil current_user_account,      "Log out did not remove the current user account."
   end
 
   test "function logged_in? should return true if a user is currently logged in, false otherwise" do
     assert_nil session[:user_account_id]
-    assert_not logged_in?, "Function incorrectly indicates that a user is logged in."
+    assert_not logged_in?,  "Function incorrectly indicates that a user is logged in."
     log_in( @user_account )
-    assert logged_in?, "Function incorrectly indicates that no user is logged in."
+    assert logged_in?,      "Function incorrectly indicates that no user is logged in."
   end
 end

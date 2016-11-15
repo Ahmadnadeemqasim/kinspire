@@ -3,6 +3,25 @@ require 'test_helper'
 class UserAccountTest < ActiveSupport::TestCase
 
   ##
+  # #authentic_remember_login_token?
+
+  test "method #authentic_remember_login_token? should return true if the \
+        given token matches the associated digest" do
+    user_account = user_accounts( :vader )
+    user_account.remember_login
+    assert  user_account.authentic_remember_login_token?( user_account.remember_login_token ),
+            "Authentication failed when it should have succeeded."
+  end
+
+  test "method #authentic_remember_login_token? should return false if the \
+        given token does not match the associated digest" do
+    user_account = user_accounts( :vader )
+    user_account.remember_login
+    assert_not  user_account.authentic_remember_login_token?( random_token ),
+                "Authentication succeeded when it should have failed."
+  end
+
+  ##
   # #remember_login
 
   test "method #remember_login should update the account's remember_login_token and remember_login_digest" do
