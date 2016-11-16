@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     user_account = UserAccount.find_by( email: email )
     if user_account && user_account.authenticate( password )
       log_in user_account
+      remember_login user_account
       redirect_to user_account
     else
       render 'new'

@@ -1,3 +1,5 @@
+require 'crypto'
+
 class UserAccount < ApplicationRecord
   attr_accessor :remember_login_token # user login persistence
   before_save { email.downcase! }
