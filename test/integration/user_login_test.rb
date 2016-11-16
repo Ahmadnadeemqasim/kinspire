@@ -69,4 +69,15 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     post login_path, params: { session: { email: uppercase_email, password: @password } }
     assert is_logged_in?,       "Login should be successful with uppercase email."
   end
+
+  test "login with remembering" do
+    log_in_as( @user_account, password: @password, remember_login: '1' )
+    assert_equal  cookies['remember_login_token'], assigns( :user_account ).remember_login_token,
+                  "User login not remembered when it should be."
+  end
+
+  test "login without remembering" do
+    log_in_as( @user_account, password: @password, remember_login: '0' )
+    assert_nil cookies['remember_login_token'], "User login remembered when it should not be."
+  end
 end
