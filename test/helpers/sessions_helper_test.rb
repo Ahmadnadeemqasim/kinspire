@@ -26,7 +26,14 @@ class SessionsHelperTest < ActionView::TestCase
     assert_nil current_user_account
     remember_login( @user_account )
     current_user_account
-    assert_not_nil session[:user_account_id]
+    assert is_logged_in?
+  end
+
+  test "function current_user_account should return nil if the remember login digest is wrong" do
+    assert_nil current_user_account
+    remember_login( @user_account )
+    @user_account.update_attribute( :remember_login_digest, random_token_digest )
+    assert_nil current_user_account, "Returned user when nil was expected."
   end
 
   ##
