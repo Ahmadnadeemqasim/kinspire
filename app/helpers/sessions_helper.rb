@@ -12,7 +12,7 @@ module SessionsHelper
       @current_user_account ||= UserAccount.find_by( id: user_account_id )
     elsif user_account_id = cookies.signed[:user_account_id]
       user_account = UserAccount.find_by( id: user_account_id )
-      if user_account && user_account.authentic_remember_login_token?( 
+      if user_account && user_account.authenticate_remember_login_token( 
                                       cookies[:remember_login_token] )
         log_in user_account
         @current_user_account = user_account

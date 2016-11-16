@@ -17,7 +17,7 @@ class UserAccount < ApplicationRecord
   ##
   # Authenticate the user account remembered login against the given token.
 
-  def authentic_remember_login_token?( remember_login_token )
+  def authenticate_remember_login_token( remember_login_token )
     return false if remember_login_digest.nil?
     BCrypt::Password.new( remember_login_digest ).is_password?( remember_login_token )
   end

@@ -7,26 +7,26 @@ class UserAccountTest < ActiveSupport::TestCase
   end
 
   ##
-  # #authentic_remember_login_token?
+  # #authenticate_remember_login_token
 
-  test "function authentic_remember_login_token? should return true if the \
+  test "function authenticate_remember_login_token should return true if the \
         given token matches the associated digest" do
     @user_account.remember_login
-    assert  @user_account.authentic_remember_login_token?( @user_account.remember_login_token ),
+    assert  @user_account.authenticate_remember_login_token( @user_account.remember_login_token ),
             "Authentication failed when it should have succeeded."
   end
 
-  test "function authentic_remember_login_token? should return false if the \
+  test "function authenticate_remember_login_token should return false if the \
         given token does not match the associated digest" do
     @user_account.remember_login
-    assert_not  @user_account.authentic_remember_login_token?( ' ' ),
+    assert_not  @user_account.authenticate_remember_login_token( ' ' ),
                 "Authentication succeeded when it should have failed."
   end
 
   test "function authentic_remember_login_token should return false if the \
         remember_login_digest is nil" do
     assert_nil  @user_account.remember_login_digest
-    assert_not  @user_account.authentic_remember_login_token?( ' ' ),
+    assert_not  @user_account.authenticate_remember_login_token( ' ' ),
                 "Authenticating against a nil remember_login_digest should return false."
   end
 
