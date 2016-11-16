@@ -12,12 +12,6 @@ module TestUserAccountSecurityHelper
     Crypto.secure_digest( password )
   end
 
-  ## Return a random token.
-
-  def random_token
-    SecureRandom.urlsafe_base64
-  end
-
   ##
   # Return the standard password.
   
