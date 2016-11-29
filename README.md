@@ -4,19 +4,19 @@ This application runs on Rails 5.0.0.1 and Ruby 2.3.1. PostgreSQL version 9 or a
 
 Getting up and running should go something like this:
 
-### Version Control
+## Version Control
 
 Make sure you have Git [installed and up to date](https://git-scm.com/downloads).
 
 Make sure you are all set up on GitHub with proper [Git configuration](https://help.github.com/articles/set-up-git/) and [SSH keys](https://help.github.com/articles/generating-an-ssh-key/).
 
-### Create Your Project Directory and Download the Source Code
+## Create Your Project Directory and Download the Source Code
 
     $ mkdir ~/.../kinspire
     $ cd ~/.../kinspire
     $ git clone git@github.com:nmccrea/kinspire.git
 
-### Prepare Your Development Environment with RVM
+## Prepare Your Development Environment with RVM
 
 Please use [Ruby Version Manager (RVM)](https://rvm.io/) on your development machine to isolate your Ruby development environment.
 
@@ -64,7 +64,7 @@ Return to the project directory and confirm the correct environment has been rea
 
 The `.ruby-gemset` file is ignored by Git version control, since non-development environments may not use RVM.
 
-### Install PostgreSQL
+## Install PostgreSQL
 
 If you are on a Mac using Homebrew, you should be able to do this as follows:
 
@@ -88,7 +88,7 @@ The server can be stopped with the stop command:
 
     $ pg_ctl -D /usr/local/var/postgres stop
 
-### Install Application Dependencies (Gems)
+## Install Application Dependencies (Gems)
 
 Rails uses a gem called [bundler](http://bundler.io/) to manage all of the other gems you add to your project (including the Rails gem itself). From the project's root directory:
 
@@ -102,14 +102,14 @@ It may take a few minutes for all the gems to install.
 
 This command reads the contents of the file `Gemfile`, and installs all of the gems listed there along with their dependencies. Any time we want to add a new gem to the project, we will add it to the `Gemfile`, and then run `$ bundle install` again.
 
-### Prepare the Database
+## Prepare the Database
 
 From the project root:
 
     $ rails db:setup
     $ rails db:migrate
 
-### Run the Application
+## Run the Application
 
 If all has gone well up to this point (Ha!), you should be able to run:
 
