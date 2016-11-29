@@ -1,6 +1,6 @@
 require 'crypto'
 
-class UserAccount < ApplicationRecord
+class User < ApplicationRecord
   attr_accessor :remember_login_token # user login persistence
   before_save { email.downcase! }
   
@@ -15,7 +15,7 @@ class UserAccount < ApplicationRecord
                         allow_nil: true
 
   ##
-  # Authenticate the user account remembered login against the given token.
+  # Authenticate the user remembered login against the given token.
 
   def authenticate_remember_login_token( remember_login_token )
     return false if remember_login_digest.nil?
@@ -23,24 +23,24 @@ class UserAccount < ApplicationRecord
   end
 
   ##
-  # Clear the digest that remembers account login.
+  # Clear the digest that remembers user login.
 
   def forget_login
     update_attribute :remember_login_digest, nil
   end
 
   ##
-  # Update token and digest for remembering account login.
+  # Update token and digest for remembering user login.
 
   def remember_login
-    self.remember_login_token = UserAccount.new_token
+    self.remember_login_token = User.new_token
     update_attribute :remember_login_digest, Crypto.secure_digest( remember_login_token )
   end
 
   ##
-  # Generate a randomized secure token suitable for account authentication purposes.
+  # Generate a randomized secure token suitable for user authentication purposes.
 
-  def UserAccount.new_token
+  def User.new_token
     SecureRandom.urlsafe_base64
   end
 end

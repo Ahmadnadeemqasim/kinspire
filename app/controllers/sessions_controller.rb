@@ -7,16 +7,16 @@ class SessionsController < ApplicationController
     password    = params[:session][:password]
     remember    = params[:session][:remember_login]
     
-    @user_account = UserAccount.find_by( email: email )
-    if @user_account && @user_account.authenticate( password )
+    @user = User.find_by( email: email )
+    if @user && @user.authenticate( password )
       # Log in.
-      log_in @user_account
+      log_in @user
 
       # Handle login persistence.
-      remember == '1' ? remember_login( @user_account ) :
-                        forget_login( @user_account )
+      remember == '1' ? remember_login( @user ) :
+                        forget_login( @user )
 
-      redirect_to @user_account
+      redirect_to @user
     else
       render 'new'
     end

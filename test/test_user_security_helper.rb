@@ -3,7 +3,7 @@
 
 require 'crypto'
 
-module TestUserAccountSecurityHelper
+module TestUserSecurityHelper
   
   ##
   # Return a secure digest of the given password.

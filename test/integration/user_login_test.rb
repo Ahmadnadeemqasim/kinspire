@@ -2,8 +2,8 @@ require 'test_helper'
 
 class UserLoginTest < ActionDispatch::IntegrationTest
   def setup
-    @user_account = user_accounts( :vader )
-    @password     = "imURfatha!"
+    @user     = users( :vader )
+    @password = "imURfatha!"
   end
 
   test "user submits invalid credentials at log in" do
@@ -20,11 +20,11 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     get login_path
     assert_not is_logged_in?,       "No user should be logged in by default."
 
-    post login_path, params: { session: { email: @user_account.email, password: @password } }
-    assert is_logged_in?,                 "Successful login should log the user in immediately."
-    assert_redirected_to @user_account,   "Successful login should redirect to the user's account homepage."
+    post login_path, params: { session: { email: @user.email, password: @password } }
+    assert is_logged_in?,         "Successful login should log the user in immediately."
+    assert_redirected_to @user,   "Successful login should redirect to the user's homepage."
     follow_redirect!
-    assert_template 'user_accounts/show', "Successful login should render the user's show page."
+    assert_template 'users/show', "Successful login should render the user's show page."
 
     delete logout_path
     assert_not is_logged_in?,                 "Visiting the logout path should log the user out immediately."
@@ -37,11 +37,11 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     get login_path
     assert_not is_logged_in?, "No user should be logged in by default."
 
-    post login_path, params: { session: { email: @user_account.email, password: @password } }
+    post login_path, params: { session: { email: @user.email, password: @password } }
     assert is_logged_in?,     "Successful login should log the user in immediately."
     follow_redirect!
 
-    post login_path, params: { session: { email: @user_account.email, password: @password } }
+    post login_path, params: { session: { email: @user.email, password: @password } }
     assert is_logged_in?,     "Successful login should log the user in immediately."
     follow_redirect!
 
@@ -54,8 +54,8 @@ class UserLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "email is not case-sensitive at login" do
-    lowercase_email = @user_account.email.downcase
-    uppercase_email = @user_account.email.upcase
+    lowercase_email = @user.email.downcase
+    uppercase_email = @user.email.upcase
 
     get login_path
     assert_not is_logged_in?
@@ -71,13 +71,13 @@ class UserLoginTest < ActionDispatch::IntegrationTest
   end
 
   test "login with remembering" do
-    log_in_as( @user_account, password: @password, remember_login: '1' )
-    assert_equal  cookies['remember_login_token'], assigns( :user_account ).remember_login_token,
+    log_in_as( @user, password: @password, remember_login: '1' )
+    assert_equal  cookies['remember_login_token'], assigns( :user ).remember_login_token,
                   "User login not remembered when it should be."
   end
 
   test "login without remembering" do
-    log_in_as( @user_account, password: @password, remember_login: '0' )
+    log_in_as( @user, password: @password, remember_login: '0' )
     assert_nil cookies['remember_login_token'], "User login remembered when it should not be."
   end
 end
