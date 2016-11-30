@@ -5,9 +5,9 @@ module Company
   @@strings = { company_name: "Kinspire" }
 
   ##
-  # Returns the hash of company strings.
+  # Returns the requested string.
 
-  def Company.strings
-    return @@strings
+  def Company.string( key )
+    return @@strings[key]
   end
 end
