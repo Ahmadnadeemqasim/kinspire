@@ -54,13 +54,6 @@ class UserValidationTest < ActiveSupport::TestCase
     assert_not duplicate_user.valid?, "Duplicate User email should not be valid."
   end
 
-  test "email should be saved in lower case" do     # NOTE: This is technically not a validation test. Is this the right place for this test?
-    mixed_case_email = "FaThEr@SkYwAlKeR.cOm"
-    @user.email = mixed_case_email
-    @user.save
-    assert_equal mixed_case_email.downcase, @user.reload.email, "User email should be saved in lower case."
-  end
-
   ##
   # Password
 
