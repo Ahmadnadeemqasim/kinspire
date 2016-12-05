@@ -1,5 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 vader:
-  email: darth.vader@empire.gov
-  password_digest: <%= password_digest( "imURfatha!" ) %>
+  email:            darth.vader@empire.gov
+  password_digest:  <%= password_digest( "imURfatha!" ) %> # Keep this password unique. It is used to test the login system.
+
+valid_admin_user:
+  email:            admin@example.com
+  password_digest:  <%= standard_password_digest %>
+  role:             <%= User.roles[:admin] %>
+
+valid_kinployee_user:
+  email:            kinployee@example.com
+  password_digest:  <%= standard_password_digest %>
+  role:             <%= User.roles[:kinployee] %>
+
+valid_kinployer_user:
+  email:            kinployer@example.com
+  password_digest:  <%= standard_password_digest %>
+  role:             <%= User.roles[:kinployer] %>

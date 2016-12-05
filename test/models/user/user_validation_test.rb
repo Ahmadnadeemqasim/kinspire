@@ -7,6 +7,9 @@ class UserValidationTest < ActiveSupport::TestCase
                       password: standard_password, password_confirmation: standard_password )
   end
 
+  ##
+  # Test object failsafe.
+
   test "the test user should be valid by default" do
     assert @user.valid?, "User test object is not valid. These tests must be run against an object that is valid by default."
   end

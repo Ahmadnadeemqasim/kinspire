@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   include User::DatabaseAuthenticatable
   include User::Rememberable
+  include User::Roles
 
   before_save { email.downcase! }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@([a-z\d\-]+\.)+[a-z]+\z/i

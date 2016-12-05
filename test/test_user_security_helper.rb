@@ -37,7 +37,7 @@ module TestUserSecurityHelper
   # Return a secure digest of the standard password.
 
   def standard_password_digest
-    password_digest( default_password )
+    password_digest( standard_password )
   end
 
   ##
