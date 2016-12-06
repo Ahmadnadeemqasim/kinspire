@@ -22,6 +22,11 @@ class KinployeeValidationTest < ActiveSupport::TestCase
   ##
   # User association.
 
+  test "User must be present" do
+    @kinployee.user = nil
+    assert_not @kinployee.valid?, "Associated User must be required."
+  end
+
   test "User must be unique" do
     assert @kinployee.save
     new_kinployee = @kinployee.dup
