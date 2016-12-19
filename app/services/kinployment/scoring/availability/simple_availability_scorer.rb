@@ -22,7 +22,7 @@ class Kinployment
         # Must return a value between 0 and 100.
 
         def call
-          @kinployment.desired_availability <= @kinployee.availability ?
+          @kinployment.preferred_availability <= @kinployee.availability ?
             100 :
             0
         end
