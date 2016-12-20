@@ -1,7 +1,6 @@
 require 'test_helper'
 
 module Kinployment::Scoring::Availability
-
   class SimpleAvailabilityScorerTest < ActiveSupport::TestCase
 
     test "must return 100 if Kinployee availability is less than or equal to Kinployment preferred availability, 0 otherwise" do
