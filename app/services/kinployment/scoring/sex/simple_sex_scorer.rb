@@ -25,8 +25,8 @@ class Kinployment
           kinployment_preference = @kinployment.preferred_sex
           kinployee_sex = @kinployee.sex
           return 100  if kinployment_preference == kinployee_sex
-          return 80   if kinployment_preference == "no_preference"
-          return 20   if kinployee_sex == "other"
+          return 80   if kinployment_preference == 'no_preference'
+          return 20   if kinployee_sex          == 'other'
           return 0
         end
 

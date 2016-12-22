@@ -4,4 +4,6 @@ class Kinployee < ApplicationRecord
   has_many :kinployers, through: :kinployments
 
   validates :user, uniqueness: true
+
+  serialize :cultural_backgrounds, Array
 end
