@@ -25,4 +25,16 @@ class KinployeeTest < ActiveSupport::TestCase
   #                 kinployee.reload.skills,
   #                 "Expected attribute to be deserialized into an Array of strings."
   # end
+
+  ##
+  # TODO: Please activate this test once Kinployee has been decoupled from validations.
+
+  # test "languages should serialize and deserialize as expected" do
+  #   kinployee = Kinployee.new( languages: [ 'one', 'two', 'three' ] )
+
+  #   assert kinployee.save
+  #   assert_equal  [ 'one', 'two', 'three' ],
+  #                 kinployee.reload.languages,
+  #                 "Expected attribute to be deserialized into an Array of strings."
+  # end
 end

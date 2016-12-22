@@ -5,6 +5,7 @@ class Kinployee < ApplicationRecord
 
   validates :user, uniqueness: true
 
-  serialize :cultural_backgrounds, Array
-  serialize :skills, Array
+  serialize :cultural_backgrounds,  Array
+  serialize :languages,             Array
+  serialize :skills,                Array
 end
