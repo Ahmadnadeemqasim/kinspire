@@ -7,5 +7,6 @@ class Kinployee < ApplicationRecord
 
   serialize :cultural_backgrounds,  Array
   serialize :languages,             Array
+  serialize :location,              Hash
   serialize :skills,                Array
 end
