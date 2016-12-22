@@ -13,4 +13,16 @@ class KinployeeTest < ActiveSupport::TestCase
   #                 kinployee.reload.cultural_backgrounds,
   #                 "Expected attribute to be deserialized into an Array of strings."
   # end
+
+  ##
+  # TODO: Please activate this test once Kinployee has been decoupled from validations.
+
+  # test "skills should serialize and deserialize as expected" do
+  #   kinployee = Kinployee.new( skills: [ 'one', 'two', 'three' ] )
+
+  #   assert kinployee.save
+  #   assert_equal  [ 'one', 'two', 'three' ],
+  #                 kinployee.reload.skills,
+  #                 "Expected attribute to be deserialized into an Array of strings."
+  # end
 end
