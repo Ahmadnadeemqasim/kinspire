@@ -1,47 +1,38 @@
 require 'test_helper'
 
 class NominationTest < ActiveSupport::TestCase
+  Nomination = Kinployment::Nomination
 
   def setup
     @kinployment  = Kinployment.new
     @kinployee    = Kinployee.new
   end
 
-  test "score must be between 0 and 100" do
-    valid_scores    = [0, 1, 99, 100]
-    invalid_scores  = [-1, 101]
+  test "all scores must be between 0 and 100" do
+    valid_scores = {  overall: 50.0,
+                      availability: 0.0, culture: 50.0, langauge: 100.0 }
+    invalid_scores_low  = valid_scores.dup; invalid_scores_low[:language]  = -0.01
+    invalid_scores_high = valid_scores.dup; invalid_scores_high[:language] = 100.01
 
-    valid_scores.each do |score|
-      assert_nothing_raised do 
-        Kinployment::Nomination.new( @kinployment, @kinployee, score )
-      end
+    assert_nothing_raised do 
+      Nomination.new( @kinployment, @kinployee, valid_scores )
     end
-    invalid_scores.each do |score|
-      assert_raises Kinployment::Nomination::ScoreOutOfRangeError do
-        Kinployment::Nomination.new( @kinployment, @kinployee, score)
-      end
+    assert_raises Nomination::ScoreOutOfRangeError do
+      Nomination.new( @kinployment, @kinployee, invalid_scores_low )
+    end
+    assert_raises Nomination::ScoreOutOfRangeError do
+      Nomination.new( @kinployment, @kinployee, invalid_scores_high )
     end
   end
 
-  ##
-  # Value object behavior.
-
-  test "equality must be determined by value, not identity" do
-    equal_nomination1                 = Kinployment::Nomination.new( @kinployment, @kinployee, 50 )
-    equal_nomination2                 = Kinployment::Nomination.new( @kinployment, @kinployee, 50 )
-    different_kinployment_nomination  = Kinployment::Nomination.new( Kinployment.new, @kinployee, 50 )
-    different_kinployee_nomination    = Kinployment::Nomination.new( @kinployment, Kinployee.new, 50 )
-
-    assert_equal equal_nomination1, equal_nomination2,
-      "Expected nominations with equal values to be equal."
-    assert_not_equal different_kinployment_nomination, equal_nomination1,
-      "Expected nominations with different Kinployments to be unequal."
-    assert_not_equal different_kinployee_nomination,   equal_nomination1,
-      "Expected nominations with different Kinployees to be unequal."
+  test "must include an overall score" do
+    assert_raises Nomination::MissingOverallScoreError do
+      Nomination.new( @kinployment, @kinployee, { availability: 50.0 } )
+    end
   end
 
   test "must be immutable" do
-    nomination = Kinployment::Nomination.new( @kinployment, @kinployee, 50 )
+    nomination = Nomination.new( @kinployment, @kinployee, { overall: 40.0 } )
 
     assert_raises Exception, "Expected attribute to be immutable." do
       nomination.kinployment = Kinployment.new
@@ -50,17 +41,40 @@ class NominationTest < ActiveSupport::TestCase
       nomination.kinployee = Kinployee.new
     end
     assert_raises Exception, "Expected attribute to be immutable." do
-      nomination.score = 20
+      nomination.scores = { availability: 20.0 }
     end
   end
 
-  test "must be comparable based on score" do
-    low_nomination   = Kinployment::Nomination.new( @kinployment, @kinployee, 50 )
-    high_nomination  = Kinployment::Nomination.new( @kinployment, @kinployee, 51 )
+  test "must be comparable based on overall score" do
+    nomination_low   = Nomination.new( @kinployment, @kinployee, { overall: 50.0 } )
+    nomination_high  = Nomination.new( @kinployment, @kinployee, { overall: 51.0 } )
 
-    assert high_nomination > low_nomination,
+    assert nomination_high > nomination_low,
       "Expected nominations to be comparable based on their score."
-    assert low_nomination < high_nomination,
+    assert nomination_low < nomination_high,
       "Expected nominations to be comparable based on their score."
+  end
+
+  ##
+  # #overall_score
+
+  test "#overall_score must return the value of the overall score" do
+    nomination = Nomination.new( @kinployment, @kinployee,
+                    { overall: 12.3456, availability: 50.0 } )
+
+    assert_equal 12.3456, nomination.overall_score
+  end
+
+  ##
+  # #score_for
+
+  test "#score_for must return the requested score" do
+    scores = {  overall: 50.0, availability: 0.0,
+                culture: 50.0, langauge: 100.0 }
+    nomination = Nomination.new( @kinployment, @kinployee, scores )
+
+    scores.each do |key, value|
+      assert_equal value, nomination.score_for( key )
+    end
   end
 end

@@ -1,42 +1,61 @@
 class Kinployment
 
   ##
-  # A value object representing a Kinployee candidate for a Kinployment job.
-  # Each nomination must have a score, representing the system's calculation of
-  # how strong of a match the candidate is for the job.
+  # An object representing a Kinployee candidate for a Kinployment job.
+  #
+  # Each Nomination takes a Kinployment, a Kinployee, and a Hash of scores
+  # representing a measurement of how strong of a match the candidate is for
+  # the job across various dimensions.
+  #
+  # An overall score is required in the Hash. All other scores are optional.
+  #
+  # This object is immutable.
   
   class Nomination
     include Comparable
 
+    class MissingOverallScoreError < ArgumentError; end
     class ScoreOutOfRangeError < ArgumentError; end
 
-    attr_reader :kinployment, :kinployee, :score
+    attr_reader :kinployment, :kinployee
 
     ##
     # Constructor.
+    # Takes a Kinployment, a Kinployee, and a Hash of scores.
 
-    def initialize( kinployment, kinployee, score )
-      raise ScoreOutOfRangeError if score < 0 || score > 100
+    def initialize( kinployment, kinployee, scores )
+      raise MissingOverallScoreError unless scores[:overall]
+
+      scores.each do |key, value|
+        if value < 0.0 || value > 100.0
+          raise ScoreOutOfRangeError, "Score for '#{key}' has invalid value of #{value}."
+        end
+      end
 
       @kinployment  = kinployment
       @kinployee    = kinployee
-      @score        = score
+      @scores       = scores
     end
 
     ##
-    # Determine equality based on value, not identity.
-
-    def ==( other )
-      @kinployment  == other.kinployment &&
-      @kinployee    == other.kinployee &&
-      @score        == other.score
-    end
-
-    ##
-    # Compare based on score.
+    # Compare based on overall score.
 
     def <=>( other )
-      @score <=> other.score
+      overall_score <=> other.overall_score
+    end
+
+    ##
+    # Return the value of the overall score.
+
+    def overall_score
+      score_for( :overall )
+    end
+
+    ##
+    # Return the value of the requested score.
+
+    def score_for( dimension )
+      @scores[dimension]
     end
   end
 end
