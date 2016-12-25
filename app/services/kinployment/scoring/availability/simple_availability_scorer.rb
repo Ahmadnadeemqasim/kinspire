@@ -23,8 +23,8 @@ class Kinployment
 
         def call
           @kinployment.preferred_availability <= @kinployee.availability ?
-            100 :
-            0
+            100.0 :
+            0.0
         end
 
       end

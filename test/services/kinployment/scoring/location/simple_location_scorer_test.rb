@@ -7,27 +7,27 @@ module Kinployment::Scoring::Location
       kinployment = Kinployment.new( location: { city: 'San Francisco', state: 'CA' } )
       kinployee   = Kinployee.new( location: { city: 'San Francisco', state: 'CA' } )
 
-      assert_equal  100.0,
-                    SimpleLocationScorer.new( kinployment, kinployee ).call,
-                    0.0001
+      result = SimpleLocationScorer.new( kinployment, kinployee ).call
+
+      assert result.eql?( 100.0 )
     end
 
     test "must return 20.0 if Kinployment and Kinployee state matches, but city differs" do
       kinployment = Kinployment.new( location: { city: 'San Francisco', state: 'CA' } )
       kinployee   = Kinployee.new( location: { city: 'Los Angeles', state: 'CA' } )
 
-      assert_equal  20.0,
-                    SimpleLocationScorer.new( kinployment, kinployee ).call,
-                    0.0001
+      result = SimpleLocationScorer.new( kinployment, kinployee ).call
+
+      assert result.eql?( 20.0 )
     end
 
     test "must return 0.0 if Kinployment and Kinployee are in different states" do
       kinployment = Kinployment.new( location: { city: 'San Francisco', state: 'CA' } )
       kinployee   = Kinployee.new( location: { city: 'Miami', state: 'FL' } )
 
-      assert_equal  0.0,
-                    SimpleLocationScorer.new( kinployment, kinployee ).call,
-                    0.0001
+      result = SimpleLocationScorer.new( kinployment, kinployee ).call
+
+      assert result.eql?( 0.0 )
     end
   end
 end
