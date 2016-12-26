@@ -19,14 +19,12 @@ class Kinployment
         ##
         # Calculate the skills match score between this instance's
         # Kinployment and Kinployee.
-        # Must return a value between 0 and 100.
 
         def call
           num_matching_skills = ( @kinployee.skills &
                                   @kinployment.preferred_skills ).length
-          fraction_matching_skills  = num_matching_skills.to_f /
-                                      @kinployment.preferred_skills.length
-          100 * fraction_matching_skills
+
+          num_matching_skills.to_f / @kinployment.preferred_skills.length
         end
       end
     end

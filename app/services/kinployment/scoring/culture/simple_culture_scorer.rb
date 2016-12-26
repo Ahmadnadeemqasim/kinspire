@@ -24,7 +24,6 @@ class Kinployment
         ##
         # Calculate the culture match score between this instance's
         # Kinployment and Kinployee.
-        # Must return a value between 0.0 and 100.0.
 
         def call
           kinployment_score = case @kinployment_match_preference
@@ -39,7 +38,7 @@ class Kinployment
             when 'not_similar'    then kinployee_dissimilar_culture_score
           end
 
-          kinployment_score * kinployee_score * 100.0
+          kinployment_score * kinployee_score
         end
 
         private

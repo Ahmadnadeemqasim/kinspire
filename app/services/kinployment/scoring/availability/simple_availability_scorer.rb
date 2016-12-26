@@ -19,11 +19,10 @@ class Kinployment
         ##
         # Calculate the availibility match score between this instance's
         # Kinployment and Kinployee.
-        # Must return a value between 0 and 100.
 
         def call
           @kinployment.preferred_availability <= @kinployee.availability ?
-            100.0 :
+            1.0 :
             0.0
         end
 

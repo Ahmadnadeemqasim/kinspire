@@ -27,7 +27,7 @@ class Kinployment
       raise MissingOverallScoreError unless scores[:overall]
 
       scores.each do |key, value|
-        if value < 0.0 || value > 100.0
+        if value < 0.0 || value > 1.0
           raise ScoreOutOfRangeError, "Score for '#{key}' has invalid value of #{value}."
         end
       end

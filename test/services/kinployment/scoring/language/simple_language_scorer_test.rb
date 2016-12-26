@@ -11,16 +11,16 @@ module Kinployment::Scoring::Language
 
       assert_in_delta 0.0,
                       SimpleLanguageScorer.new( kinployment, kinployee_none ).call,
-                      0.0001
-      assert_in_delta 100 * ( 1.0 / 3 ),
+                      0.000001
+      assert_in_delta 1.0 / 3,
                       SimpleLanguageScorer.new( kinployment, kinployee_one ).call,
-                      0.0001
-      assert_in_delta 100 * ( 2.0 / 3 ),
+                      0.000001
+      assert_in_delta 2.0 / 3,
                       SimpleLanguageScorer.new( kinployment, kinployee_two ).call,
-                      0.0001
-      assert_in_delta 100.0,
+                      0.000001
+      assert_in_delta 1.0,
                       SimpleLanguageScorer.new( kinployment, kinployee_all ).call,
-                      0.0001
+                      0.000001
     end
   end
 end

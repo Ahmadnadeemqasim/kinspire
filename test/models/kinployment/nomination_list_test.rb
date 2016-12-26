@@ -6,9 +6,9 @@ class NominationListTest < ActiveSupport::TestCase
     kinployment = Kinployment.new
     subject = Kinployment::NominationList.new( kinployment )
     analogous_array = [
-      Kinployment::Nomination.new( kinployment, Kinployee.new, { overall: 50.0 } ),
-      Kinployment::Nomination.new( kinployment, Kinployee.new, { overall: 50.0 } ),
-      Kinployment::Nomination.new( kinployment, Kinployee.new, { overall: 50.0 } )
+      Kinployment::Nomination.new( kinployment, Kinployee.new, { overall: 0.5 } ),
+      Kinployment::Nomination.new( kinployment, Kinployee.new, { overall: 0.5 } ),
+      Kinployment::Nomination.new( kinployment, Kinployee.new, { overall: 0.5 } )
     ]
     
     ##
