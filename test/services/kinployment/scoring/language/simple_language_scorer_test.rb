@@ -8,18 +8,19 @@ module Kinployment::Scoring::Language
       kinployee_one   = Kinployee.new( languages: ['one'] )
       kinployee_two   = Kinployee.new( languages: ['one', 'two'] )
       kinployee_all   = Kinployee.new( languages: ['one', 'two', 'three'] )
+      subject = SimpleLanguageScorer.new( kinployment )
 
       assert_in_delta 0.0,
-                      SimpleLanguageScorer.new( kinployment, kinployee_none ).call,
+                      subject.score_for( kinployee_none ),
                       0.000001
       assert_in_delta 1.0 / 3,
-                      SimpleLanguageScorer.new( kinployment, kinployee_one ).call,
+                      subject.score_for( kinployee_one ),
                       0.000001
       assert_in_delta 2.0 / 3,
-                      SimpleLanguageScorer.new( kinployment, kinployee_two ).call,
+                      subject.score_for( kinployee_two ),
                       0.000001
       assert_in_delta 1.0,
-                      SimpleLanguageScorer.new( kinployment, kinployee_all ).call,
+                      subject.score_for( kinployee_all ),
                       0.000001
     end
   end

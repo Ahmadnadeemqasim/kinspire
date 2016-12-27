@@ -67,67 +67,58 @@ module Kinployment::Scoring::Culture
 
     test "when both parties express no preference, must return the expected score" do
       assert_in_delta 1.0,
-                      SimpleCultureScorer.new(
-                        kinployment_no_preference,
-                        kinployee_no_preference ).call,
+                      SimpleCultureScorer.new( kinployment_no_preference )
+                        .score_for( kinployee_no_preference ),
                       0.000001
     end
 
     test "when one party expresses no preference and the other party prefers similarity,\
           must return the expected score" do
       assert_in_delta expected_kinployee_similarity_score,
-                      SimpleCultureScorer.new(
-                        kinployment_no_preference,
-                        kinployee_prefers_similar ).call,
+                      SimpleCultureScorer.new( kinployment_no_preference )
+                        .score_for( kinployee_prefers_similar ),
                       0.000001
       assert_in_delta expected_kinployment_similarity_score,
-                      SimpleCultureScorer.new(
-                        kinployment_prefers_similar,
-                        kinployee_no_preference ).call,
+                      SimpleCultureScorer.new( kinployment_prefers_similar )
+                        .score_for( kinployee_no_preference ),
                       0.000001
     end
 
     test "when one party expresses no preference and the other party prefers dissimilarity,\
           must return the expected score" do
       assert_in_delta expected_kinployee_dissimilarity_score,
-                      SimpleCultureScorer.new(
-                        kinployment_no_preference,
-                        kinployee_prefers_dissimilar ).call,
+                      SimpleCultureScorer.new( kinployment_no_preference )
+                        .score_for( kinployee_prefers_dissimilar ),
                       0.000001
       assert_in_delta expected_kinployment_dissimilarity_score,
-                      SimpleCultureScorer.new(
-                        kinployment_prefers_dissimilar,
-                        kinployee_no_preference ).call,
+                      SimpleCultureScorer.new( kinployment_prefers_dissimilar )
+                        .score_for( kinployee_no_preference ),
                       0.000001
     end
 
     test "when one party prefers similarity and the other party prefers dissimilarity,\
           must return the expected score" do
       assert_in_delta expected_kinployment_similarity_score * expected_kinployee_dissimilarity_score,
-                      SimpleCultureScorer.new(
-                        kinployment_prefers_similar,
-                        kinployee_prefers_dissimilar ).call,
+                      SimpleCultureScorer.new( kinployment_prefers_similar )
+                        .score_for( kinployee_prefers_dissimilar ),
                       0.000001
       assert_in_delta expected_kinployment_dissimilarity_score * expected_kinployee_similarity_score,
-                      SimpleCultureScorer.new(
-                        kinployment_prefers_dissimilar,
-                        kinployee_prefers_similar ).call,
+                      SimpleCultureScorer.new( kinployment_prefers_dissimilar )
+                        .score_for( kinployee_prefers_similar ),
                       0.000001
     end
 
     test "when both parties prefer similarity, must return the expected score" do
       assert_in_delta expected_kinployment_similarity_score * expected_kinployee_similarity_score,
-                      SimpleCultureScorer.new(
-                        kinployment_prefers_similar,
-                        kinployee_prefers_similar ).call,
+                      SimpleCultureScorer.new( kinployment_prefers_similar )
+                        .score_for( kinployee_prefers_similar ),
                       0.000001
     end
 
     test "when both parties prefer dissimilarity, must return the expected score" do
       assert_in_delta expected_kinployment_dissimilarity_score * expected_kinployee_dissimilarity_score,
-                      SimpleCultureScorer.new(
-                        kinployment_prefers_dissimilar,
-                        kinployee_prefers_dissimilar ).call,
+                      SimpleCultureScorer.new( kinployment_prefers_dissimilar )
+                        .score_for( kinployee_prefers_dissimilar ),
                       0.000001
     end
   end

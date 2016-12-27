@@ -11,18 +11,18 @@ class Kinployment
         ##
         # Constructor.
 
-        def initialize( kinployment, kinployee )
+        def initialize( kinployment )
           @kinployment  = kinployment
-          @kinployee    = kinployee
         end
 
         ##
-        # Calculate the language match score between this instance's
-        # Kinployment and Kinployee.
+        # Calculate the language match score for the given Kinployee
+        # relative to this instance's Kinployment.
 
-        def call
-          num_matching_languages = (  @kinployee.languages &
-                                      @kinployment.preferred_languages ).length
+        def score_for( kinployee )
+          num_matching_languages =
+            ( kinployee.languages & @kinployment.preferred_languages )
+              .length
           
           num_matching_languages.to_f / @kinployment.preferred_languages.length
         end

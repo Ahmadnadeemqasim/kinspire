@@ -10,28 +10,35 @@ class Kinployment
       ##
       # Constructor.
 
-      def initialize( kinployment, kinployee )
+      def initialize( kinployment )
         @kinployment  = kinployment
-        @kinployee    = kinployee
+
+        @availability_scorer  = Availability::SimpleAvailabilityScorer.new( @kinployment )
+        @culture_scorer       = Culture::SimpleCultureScorer.new( @kinployment )
+        @language_scorer      = Language::SimpleLanguageScorer.new( @kinployment )
+        @location_scorer      = Location::SimpleLocationScorer.new( @kinployment )
+        @sex_scorer           = Sex::SimpleSexScorer.new( @kinployment )
+        @skills_scorer        = Skills::SimpleSkillsScorer.new( @kinployment )
       end
 
       ##
-      # Calculate the match score between this instance's Kinployment and Kinployee.
+      # Calculate the match score for the given Kinployee relative to this
+      # instance's Kinployment.
 
-      def call
+      def score_for( kinployee )
         scores = {
-          availability: Availability::SimpleAvailabilityScorer.new(
-                                        @kinployment, @kinployee ).call,
-          culture:      Culture::SimpleCultureScorer.new(
-                                        @kinployment, @kinployee ).call,
-          language:     Language::SimpleLanguageScorer.new(
-                                        @kinployment, @kinployee ).call,
-          location:     Location::SimpleLocationScorer.new(
-                                        @kinployment, @kinployee ).call,
-          sex:          Sex::SimpleSexScorer.new(
-                                        @kinployment, @kinployee ).call,
-          skills:       Skills::SimpleSkillsScorer.new(
-                                        @kinployment, @kinployee ).call
+          availability: @availability_scorer
+                          .score_for( kinployee ),
+          culture:      @culture_scorer
+                          .score_for( kinployee ),
+          language:     @language_scorer
+                          .score_for( kinployee ),
+          location:     @location_scorer
+                          .score_for( kinployee ),
+          sex:          @sex_scorer
+                          .score_for( kinployee ),
+          skills:       @skills_scorer
+                          .score_for( kinployee )
         }
 
         if scores[:availability] == 0.0 || scores[:skills] == 0.0

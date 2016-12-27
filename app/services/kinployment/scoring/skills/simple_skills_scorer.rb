@@ -11,18 +11,18 @@ class Kinployment
         ##
         # Constructor.
 
-        def initialize( kinployment, kinployee )
+        def initialize( kinployment )
           @kinployment  = kinployment
-          @kinployee    = kinployee
         end
 
         ##
-        # Calculate the skills match score between this instance's
-        # Kinployment and Kinployee.
+        # Calculate the skills match score for the given Kinployee
+        # relative to this instance's Kinployment.
 
-        def call
-          num_matching_skills = ( @kinployee.skills &
-                                  @kinployment.preferred_skills ).length
+        def score_for( kinployee )
+          num_matching_skills =
+            ( kinployee.skills & @kinployment.preferred_skills )
+              .length
 
           num_matching_skills.to_f / @kinployment.preferred_skills.length
         end

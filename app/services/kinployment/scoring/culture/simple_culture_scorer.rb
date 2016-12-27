@@ -11,21 +11,22 @@ class Kinployment
         ##
         # Constructor.
 
-        def initialize( kinployment, kinployee )
+        def initialize( kinployment )
           @kinployment  = kinployment
-          @kinployee    = kinployee
 
           @kinployment_backgrounds       = @kinployment.cultural_backgrounds
           @kinployment_match_preference  = @kinployment.culture_match_preference
-          @kinployee_backgrounds       = @kinployee.cultural_backgrounds
-          @kinployee_match_preference  = @kinployee.culture_match_preference
         end
 
         ##
-        # Calculate the culture match score between this instance's
-        # Kinployment and Kinployee.
+        # Calculate the culture match score for the given Kinployee
+        # relative to this instance's Kinployment.
 
-        def call
+        def score_for( kinployee )
+          @kinployee                  = kinployee
+          @kinployee_backgrounds      = @kinployee.cultural_backgrounds
+          @kinployee_match_preference = @kinployee.culture_match_preference
+
           kinployment_score = case @kinployment_match_preference
             when 'no_preference'  then 1.0
             when 'similar'        then kinployment_similar_culture_score

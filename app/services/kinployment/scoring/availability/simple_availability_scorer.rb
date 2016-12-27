@@ -11,17 +11,16 @@ class Kinployment
         ##
         # Constructor.
 
-        def initialize( kinployment, kinployee )
+        def initialize( kinployment )
           @kinployment  = kinployment
-          @kinployee    = kinployee
         end
 
         ##
-        # Calculate the availibility match score between this instance's
-        # Kinployment and Kinployee.
+        # Calculate the availibility match score for the given Kinployee
+        # relative to this instance's Kinployment.
 
-        def call
-          @kinployment.preferred_availability <= @kinployee.availability ?
+        def score_for( kinployee )
+          @kinployment.preferred_availability <= kinployee.availability ?
             1.0 :
             0.0
         end

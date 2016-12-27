@@ -8,10 +8,11 @@ module Kinployment::Scoring::Availability
       kinployee_gt  = Kinployee.new( availability: 21 )
       kinployee_eq  = Kinployee.new( availability: 20 )
       kinployee_lt  = Kinployee.new( availability: 19 )
+      subject = SimpleAvailabilityScorer.new( kinployment )
 
-      result_gt = SimpleAvailabilityScorer.new( kinployment, kinployee_gt ).call
-      result_eq = SimpleAvailabilityScorer.new( kinployment, kinployee_eq ).call
-      result_lt = SimpleAvailabilityScorer.new( kinployment, kinployee_lt ).call
+      result_gt = subject.score_for( kinployee_gt )
+      result_eq = subject.score_for( kinployee_eq )
+      result_lt = subject.score_for( kinployee_lt )
 
       # Use .eql? to ensure results are Floats.
       assert result_gt.eql?( 1.0 ), "Unexpected value: #{result_gt}. Ensure result is a Float and has correct value."

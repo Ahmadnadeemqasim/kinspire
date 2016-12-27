@@ -11,18 +11,17 @@ class Kinployment
         ##
         # Constructor.
 
-        def initialize( kinployment, kinployee )
+        def initialize( kinployment )
           @kinployment  = kinployment
-          @kinployee    = kinployee
         end
 
         ##
-        # Calculate the location match score between this instance's
-        # Kinployment and Kinployee.
+        # Calculate the location match score for the given Kinployee
+        # relative to this instance's Kinployment.
 
-        def call
-          return 0.0  if @kinployment.location[:state] != @kinployee.location[:state]
-          return 0.2 if @kinployment.location[:city] != @kinployee.location[:city]
+        def score_for( kinployee )
+          return 0.0  if @kinployment.location[:state] != kinployee.location[:state]
+          return 0.2 if @kinployment.location[:city] != kinployee.location[:city]
           return 1.0
         end
 

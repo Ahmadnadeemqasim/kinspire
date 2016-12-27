@@ -7,7 +7,7 @@ module Kinployment::Scoring::Location
       kinployment = Kinployment.new( location: { city: 'San Francisco', state: 'CA' } )
       kinployee   = Kinployee.new( location: { city: 'San Francisco', state: 'CA' } )
 
-      result = SimpleLocationScorer.new( kinployment, kinployee ).call
+      result = SimpleLocationScorer.new( kinployment ).score_for( kinployee )
 
       assert result.eql?( 1.0 ), "Unexpected value: #{result}. Ensure result is a Float and has correct value."
     end
@@ -16,7 +16,7 @@ module Kinployment::Scoring::Location
       kinployment = Kinployment.new( location: { city: 'San Francisco', state: 'CA' } )
       kinployee   = Kinployee.new( location: { city: 'Los Angeles', state: 'CA' } )
 
-      result = SimpleLocationScorer.new( kinployment, kinployee ).call
+      result = SimpleLocationScorer.new( kinployment ).score_for( kinployee )
 
       assert result.eql?( 0.2 ), "Unexpected value: #{result}. Ensure result is a Float and has correct value."
     end
@@ -25,7 +25,7 @@ module Kinployment::Scoring::Location
       kinployment = Kinployment.new( location: { city: 'San Francisco', state: 'CA' } )
       kinployee   = Kinployee.new( location: { city: 'Miami', state: 'FL' } )
 
-      result = SimpleLocationScorer.new( kinployment, kinployee ).call
+      result = SimpleLocationScorer.new( kinployment ).score_for( kinployee )
 
       assert result.eql?( 0.0 ), "Unexpected value: #{result}. Ensure result is a Float and has correct value."
     end

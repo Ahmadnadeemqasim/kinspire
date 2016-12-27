@@ -8,18 +8,19 @@ module Kinployment::Scoring::Skills
       kinployee_one   = Kinployee.new( skills: ['one'] )
       kinployee_two   = Kinployee.new( skills: ['one', 'two'] )
       kinployee_all   = Kinployee.new( skills: ['one', 'two', 'three'] )
+      subject = SimpleSkillsScorer.new( kinployment )
 
       assert_in_delta 0.0,
-                      SimpleSkillsScorer.new( kinployment, kinployee_none ).call,
+                      subject.score_for( kinployee_none ),
                       0.000001
       assert_in_delta 1.0 / 3,
-                      SimpleSkillsScorer.new( kinployment, kinployee_one ).call,
+                      subject.score_for( kinployee_one ),
                       0.000001
       assert_in_delta 2.0 / 3,
-                      SimpleSkillsScorer.new( kinployment, kinployee_two ).call,
+                      subject.score_for( kinployee_two ),
                       0.000001
       assert_in_delta 1.0,
-                      SimpleSkillsScorer.new( kinployment, kinployee_all ).call,
+                      subject.score_for( kinployee_all ),
                       0.000001
     end
   end
