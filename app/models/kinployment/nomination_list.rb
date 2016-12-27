@@ -13,9 +13,9 @@ class Kinployment
     ##
     # Constructor.
 
-    def initialize( kinployment )
+    def initialize( kinployment, nominations=[] )
       @kinployment = kinployment
-      @nominations = []
+      @nominations = nominations
     end
 
     ##
@@ -25,6 +25,17 @@ class Kinployment
     def_delegators :@nominations,
       :[],
       :<<,
-      :each # #each enables all other Enumerable methods.
+      :each,  # #each enables all other Enumerable methods.
+      :length
+
+    ##
+    # Sorts this instance in place, in descending order.
+    # Returns this NominationList.
+
+    def sort!
+      @nominations.sort!
+      @nominations.reverse!
+      return self
+    end
   end
 end
