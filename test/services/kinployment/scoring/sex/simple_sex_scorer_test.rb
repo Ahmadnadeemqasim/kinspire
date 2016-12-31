@@ -60,7 +60,8 @@ module Kinployment::Scoring::Sex
       result_mo = SimpleSexScorer.new( kinployment_male ).score_for( kinployee_other )
       result_fo = SimpleSexScorer.new( kinployment_female ).score_for( kinployee_other )
 
-      assert result_mo.eql?( 0.2 ), "Unexpected value: #{result_fo}. Ensure result is a Float and has correct value."
+      assert result_mo.eql?( 0.2 ), "Unexpected value: #{result_mo}. Ensure result is a Float and has correct value."
+      assert result_fo.eql?( 0.2 ), "Unexpected value: #{result_fo}. Ensure result is a Float and has correct value."
     end
   end
 end
