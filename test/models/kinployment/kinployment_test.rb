@@ -50,4 +50,49 @@ class KinploymentTest < ActiveSupport::TestCase
   #                 kinployment.reload.location,
   #                 "Expected attribute to be deserialized into Hash of strings." )
   # end
+
+  ##
+  # #match
+
+  test "must associate the given Kinployee" do
+    kinployment = Kinployment.new
+    kinployee = Kinployee.new
+
+    kinployment.match( kinployee )
+
+    assert_equal kinployee, kinployment.kinployee
+  end
+
+  ##
+  # #matched?
+
+  test "must return true if the Kinployment has an associated Kinployee" do
+    kinployment = Kinployment.new
+    kinployment.match( Kinployee.new )
+
+    assert kinployment.matched?
+  end
+
+  test "must return false if the Kinployment has no associated Kinployee" do
+    kinployment = Kinployment.new
+    kinployment.unmatch
+
+    assert_not kinployment.matched?
+  end
+
+  ##
+  # #unmatch
+
+  test "must remove the Kinployee association" do
+    kinployment = Kinployment.new
+    kinployee = Kinployee.new
+    kinployment.match( kinployee )
+
+    result_before = kinployment.kinployee
+    kinployment.unmatch
+    result_after = kinployment.kinployee
+
+    assert_equal kinployee, result_before
+    assert_equal nil, result_after
+  end
 end
