@@ -10,7 +10,7 @@ class AdminUserValidationTest < ActiveSupport::TestCase
   # Test object failsafes.
 
   test "valid Admin User must be valid" do
-    assert @admin_user.admin?, "Admin user has wrong role."
+    assert @admin_user.is_admin?, "Admin user has wrong role."
     assert @admin_user.valid?,
       "\n" +
       "Admin User test object is not valid.\n" +

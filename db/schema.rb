@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20161218234259) do
     t.datetime "updated_at",            null: false
     t.string   "password_digest"
     t.string   "remember_login_digest"
-    t.integer  "role"
+    t.string   "role"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 

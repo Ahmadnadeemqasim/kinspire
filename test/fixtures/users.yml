@@ -7,14 +7,14 @@ vader:
 valid_admin_user:
   email:            admin@example.com
   password_digest:  <%= standard_password_digest %>
-  role:             <%= User.roles[:admin] %>
+  role:             admin
 
 valid_kinployee_user:
   email:            kinployee@example.com
   password_digest:  <%= standard_password_digest %>
-  role:             <%= User.roles[:kinployee] %>
+  role:             kinployee
 
 valid_kinployer_user:
   email:            kinployer@example.com
   password_digest:  <%= standard_password_digest %>
-  role:             <%= User.roles[:kinployer] %>
+  role:             kinployer

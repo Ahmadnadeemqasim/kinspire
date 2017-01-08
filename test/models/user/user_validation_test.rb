@@ -4,7 +4,8 @@ class UserValidationTest < ActiveSupport::TestCase
 
   def setup
     @user = User.new( email: "masterchief@unsc.mil",
-                      password: standard_password, password_confirmation: standard_password )
+                      password: standard_password, password_confirmation: standard_password,
+                      role: 'admin' )
   end
 
   ##
@@ -90,5 +91,23 @@ class UserValidationTest < ActiveSupport::TestCase
     existing_user = User.find( @user.id )
     assert_equal nil, existing_user.password
     assert existing_user.valid?, "Existing Users should not require a password to be valid."
+  end
+
+  ##
+  # Role
+
+  test "role should be required" do
+    @user.role = nil
+
+    assert_not @user.valid?, "Blank User role should not be valid."
+  end
+
+  test "role must be invalid if it is not one of the defined roles" do
+    defined_roles = User::ROLES
+    role = 'invalid'
+    @user.role = role
+
+    assert_not defined_roles.include?( role )
+    assert_not @user.valid?, "User with non-defined role should not be valid."
   end
 end

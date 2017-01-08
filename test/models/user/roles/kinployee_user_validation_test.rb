@@ -10,7 +10,7 @@ class KinployeeUserValidationTest < ActiveSupport::TestCase
   # Test object failsafes.
 
   test "valid Kinployee User must be valid" do
-    assert @kinployee_user.kinployee?, "Kinployee user has wrong role."
+    assert @kinployee_user.is_kinployee?, "Kinployee user has wrong role."
     assert @kinployee_user.valid?,
       "\n" +
       "Kinployee User test object is not valid.\n" +

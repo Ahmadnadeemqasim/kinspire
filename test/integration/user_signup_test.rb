@@ -6,9 +6,10 @@ class UserSignupTest < ActionDispatch::IntegrationTest
     assert_response :success, "Visit signup path unsucessful."
 
     assert_no_difference 'User.count', "Invalid signup submission should not cause a new User to be created." do
-      post users_path, params: { user: {  email:                "invalid",
-                                          password:             "foo",
-                                          assword_confirmation: "bar" } } 
+      post users_path, params: { user: {  email:                  "invalid",
+                                          password:               "foo",
+                                          password_confirmation:  "bar",
+                                          role:                   "invalid" } } 
     end
     assert_response :success,     "Invalid signup submission should not cause an HTTP failure."
     assert_not is_logged_in?,     "Invalid signup submission should not cause a user to be logged in."
@@ -18,6 +19,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
   test "user submits valid signup data" do
     email     = "valid@email.com"
     password  = standard_password
+    role      = "admin"
 
     get signup_path
     assert_response :success, "Visit signup path unsucessful."
@@ -25,7 +27,8 @@ class UserSignupTest < ActionDispatch::IntegrationTest
     assert_difference 'User.count', 1, "Valid signup submission should create a new user." do
       post users_path, params: { user: {  email:                  email,
                                           password:               password,
-                                          password_confirmation:  password } }
+                                          password_confirmation:  password,
+                                          role:                   role } }
     end
     assert is_logged_in?,                               "Successful signup should log the new user in immediately."
     assert_redirected_to User.find_by( email: email ),  "Successful signup should redirect to the new user's homepage."
