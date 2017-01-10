@@ -2,12 +2,17 @@
 
 div#homepage.page
 
+
+  = link_to "Kinployee Signup", kinployee_signup_path, class: "btn btn-default"
+
+
+
   / Section 1
   section#welcome
     div.container
       div.center-2d.text-center
         h1 Enabling you to find jobs in your commmunity.
-        = link_to "Register & Find a Job", signup_path, class: "btn btn-default"
+        = link_to "Register & Find a Job", "#", class: "btn btn-default"
         br
         a href="#employers-1"
           span.glyphicon.glyphicon-menu-down
@@ -57,9 +62,9 @@ div#homepage.page
       div.row.action-buttons
         div.col-md-3.col-xs-0
         div.col-md-3.col-xs-12
-          = link_to "Register Now", signup_path,  class: "btn btn-default center-block"
+          = link_to "Register Now", "#", class: "btn btn-default center-block"
         div.col-md-3.col-xs-12
-          = link_to "Learn More",   "#",          class: "btn btn-default center-block"
+          = link_to "Learn More",   "#", class: "btn btn-default center-block"
         div.col-md-3.col-xs-0
       div.text-center
         a href="#helpers-1"
@@ -85,7 +90,7 @@ div#homepage.page
       div.row.action-buttons
         div.col-md-3.col-xs-0
         div.col-md-3.col-xs-12
-          = link_to "Register Now", signup_path,  class: "btn btn-default center-block"
+          = link_to "Register Now", "#", class: "btn btn-default center-block"
         div.col-md-3.col-xs-12
-          = link_to "View Jobs",    "#",          class: "btn btn-default center-block"
+          = link_to "View Jobs",    "#", class: "btn btn-default center-block"
         div.col-md-3.col-xs-0

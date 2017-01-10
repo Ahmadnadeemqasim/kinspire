@@ -1,0 +1,41 @@
+h1 Kinployees#show
+
+h2 User Properties:
+
+p
+  strong email: 
+  em = @user.email
+
+h2 Kinployee Properties
+
+p
+  strong availability: 
+  em = @kinployee.availability
+
+p
+  strong cultural_backgrounds: 
+  em = @kinployee.cultural_backgrounds.join( ', ' )
+
+p
+  strong culture_match_preference: 
+  em = @kinployee.culture_match_preference
+
+p
+  strong languages: 
+  em = @kinployee.languages.join( ', ' )
+
+p
+  strong city: 
+  em = @kinployee.location[:city]
+
+p
+  strong state: 
+  em = @kinployee.location[:state]
+
+p
+  strong sex: 
+  em = @kinployee.sex
+
+p
+  strong skills: 
+  em = @kinployee.skills.join( ', ' )
