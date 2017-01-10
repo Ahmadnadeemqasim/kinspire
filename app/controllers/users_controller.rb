@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find( params[:id] )
     redirect_to kinployee_path( @user.kinployee ) if @user.is_kinployee?
+    redirect_to kinployer_path( @user.kinployer ) if @user.is_kinployer?
   end
 
   private

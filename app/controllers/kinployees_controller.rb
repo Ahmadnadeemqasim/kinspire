@@ -2,7 +2,6 @@ class KinployeesController < ApplicationController
 
   def new
     @user = User.new
-    @kinployee = Kinployee.new
   end
 
   def create

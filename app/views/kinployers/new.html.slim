@@ -1,0 +1,29 @@
+h2 Sign Up as a Kinployers
+
+= form_for( @user, url: kinployer_signup_path ) do |user_form|
+  = render 'shared/error_messages'
+
+  / Email
+  h4 = user_form.label :email
+  = user_form.email_field :email
+  br
+  br
+
+  / Password
+  h4 = user_form.label :password
+  = user_form.password_field :password
+  br
+  br
+
+  / Password Confirmation
+  h4 = user_form.label :password_confirmation, "Confirm Password"
+  = user_form.password_field :password_confirmation
+  br
+  br
+
+  / Kinployer Role
+  = user_form.hidden_field :role, value: 'kinployer'
+
+  = user_form.submit "Sign Up"
+  br
+  br

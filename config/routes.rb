@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   delete  '/logout',            to: 'sessions#destroy'
   get     '/kinployee-signup',  to: 'kinployees#new'
   post    '/kinployee-signup',  to: 'kinployees#create'
+  get     '/kinployer-signup',  to: 'kinployers#new'
+  post    '/kinployer-signup',  to: 'kinployers#create'
   resources :kinployees,  only: [ :show ]
+  resources :kinployers,  only: [ :show ]
   resources :users,       only: [ :show ]
 end
