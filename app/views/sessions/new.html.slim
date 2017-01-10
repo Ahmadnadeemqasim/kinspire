@@ -3,7 +3,7 @@ h2 Login
 = form_for( :session, url: login_path ) do |f|
   = f.label :email
   br
-  = f.email_field :email
+  = f.email_field :email, autofocus: true
   br
 
   = f.label :password
