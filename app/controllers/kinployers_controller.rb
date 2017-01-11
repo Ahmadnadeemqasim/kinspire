@@ -17,8 +17,8 @@ class KinployersController < ApplicationController
   end
 
   def show
-    @user = current_user
-    @kinployer = @user.kinployer
+    @kinployer = Kinployer.find( params[:id] )
+    @user = @kinployer.user
   end
 
   private
@@ -27,8 +27,11 @@ class KinployersController < ApplicationController
     # Define what parameters may be mass-assigned to User objects.
 
     def user_params
-      params.require( :user ).permit( :email,
-                                      :password, :password_confirmation,
-                                      :role )
+      params
+        .require( :user )
+          .permit(
+            :email,
+            :password, :password_confirmation,
+            :role )
     end
 end

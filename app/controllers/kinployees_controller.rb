@@ -29,8 +29,8 @@ class KinployeesController < ApplicationController
   end
 
   def show
-    @user = current_user
-    @kinployee = @user.kinployee
+    @kinployee = Kinployee.find( params[:id] )
+    @user = @kinployee.user
   end
 
   private

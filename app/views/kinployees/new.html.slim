@@ -18,10 +18,10 @@ h2 Sign Up as a Kinployee
   = user_form.password_field :password_confirmation
   br
   br
+
+  
   / Kinployee Role
   = user_form.hidden_field :role, value: 'kinployee'
-
-
   h2 Kinployee Information
   hr
   = user_form.fields_for :kinployee do |kinployee_form|
