@@ -27,12 +27,8 @@ p
   em = @kinployee.languages.join( ', ' )
 
 p
-  strong city: 
-  em = @kinployee.location[:city]
-
-p
-  strong state: 
-  em = @kinployee.location[:state]
+  strong location: 
+  em = "City: #{@kinployee.location[:city]}, State: #{@kinployee.location[:state]}"
 
 p
   strong sex: 
