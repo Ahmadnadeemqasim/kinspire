@@ -89,7 +89,7 @@ class UserValidationTest < ActiveSupport::TestCase
   test "password should not be required for an existing record" do
     @user.save
     existing_user = User.find( @user.id )
-    assert_equal nil, existing_user.password
+    assert_nil existing_user.password
     assert existing_user.valid?, "Existing Users should not require a password to be valid."
   end
 
