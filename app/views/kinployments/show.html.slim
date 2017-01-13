@@ -1,0 +1,79 @@
+h1 Kinployments#show
+bold Show a Kinployment's information.
+hr
+
+h3 Kinployment Properties
+
+p
+  strong preferred_availability: 
+  em = @kinployment.preferred_availability
+
+p
+  strong cultural_backgrounds: 
+  em = @kinployment.cultural_backgrounds.join( ', ' )
+
+p
+  strong culture_match_preference: 
+  em = @kinployment.culture_match_preference
+
+p
+  strong preferred_languages: 
+  em = @kinployment.preferred_languages.join( ', ' )
+
+p
+  strong location: 
+  em = "City: #{@kinployment.location[:city]}, State: #{@kinployment.location[:state]}"
+
+p
+  strong preferred_sex: 
+  em = @kinployment.preferred_sex
+
+p
+  strong preferred_skills: 
+  em = @kinployment.preferred_skills.join( ', ' )
+
+h3 Kinployer Properties
+
+p
+  strong email: 
+  em = @kinployer.user.email
+
+h3 Kinployee Properties
+
+- if @kinployee
+  p
+    strong email: 
+    em = @kinployee.user.email
+
+  p
+    strong availability: 
+    em = @kinployee.availability
+
+  p
+    strong cultural_backgrounds: 
+    em = @kinployee.cultural_backgrounds.join( ', ' )
+
+  p
+    strong culture_match_preference: 
+    em = @kinployee.culture_match_preference
+
+  p
+    strong languages: 
+    em = @kinployee.languages.join( ', ' )
+
+  p
+    strong location: 
+    em = "City: #{@kinployee.location[:city]}, State: #{@kinployee.location[:state]}"
+
+  p
+    strong sex: 
+    em = @kinployee.sex
+
+  p
+    strong skills: 
+    em = @kinployee.skills.join( ', ' )
+
+- else
+  p style = "color: red;"
+    strong
+      em This Kinployment has not yet been matched with a Kinployee.

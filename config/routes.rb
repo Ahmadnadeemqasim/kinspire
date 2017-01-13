@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   post    '/kinployee-signup',  to: 'kinployees#create'
   get     '/kinployer-signup',  to: 'kinployers#new'
   post    '/kinployer-signup',  to: 'kinployers#create'
-  resources :kinployees,  only: [ :show ]
-  resources :kinployers,  only: [ :show ]
-  resources :users,       only: [ :show ]
+  resources :kinployees,    only: [ :show ]
+  resources :kinployers,    only: [ :show ]
+  get     '/new-job-1',         to: 'kinployments#new_step_1'
+  post    '/new-job-2',         to: 'kinployments#new_step_2'
+  resources :kinployments
+  resources :users,         only: [ :show ]
 end

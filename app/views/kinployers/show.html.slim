@@ -2,6 +2,16 @@ h1 Kinployers#show
 bold Show a Kinployer's information.
 hr
 
+h3 Actions:
+
+p
+  = "Welcome to #{Company.string( :company_name )}!"
+  br
+  | Get started by 
+  strong
+    = link_to "Creating a job", new_kinployment_path
+  | !
+
 h3 User Properties:
 
 p
