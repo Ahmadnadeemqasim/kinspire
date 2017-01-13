@@ -1,0 +1,39 @@
+div style="margin-left: 20px;"
+  h4 style="text-decoration: underline;"
+    = "User ##{kinployee.user.id}  -  Kinployee ##{kinployee.id}"
+
+  p
+    strong User Email: 
+    em = kinployee.user.email
+
+  p
+    strong Availability: 
+    em = kinployee.availability
+
+  p
+    strong Cultural Backgrounds: 
+    em = kinployee.cultural_backgrounds.join( ', ' )
+
+  p
+    strong Culture Match Preference: 
+    em = kinployee.culture_match_preference
+
+  p
+    strong Languages: 
+    em = kinployee.languages.join( ', ' )
+
+  p
+    strong Location: 
+    em = "City: #{kinployee.location[:city]}, State: #{kinployee.location[:state]}"
+
+  p
+    strong Sex: 
+    em = kinployee.sex
+
+  p
+    strong Skills: 
+    em = kinployee.skills.join( ', ' )
+
+  p
+    strong
+      = link_to "Link", kinployee

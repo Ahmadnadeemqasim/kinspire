@@ -1,0 +1,43 @@
+div style="margin-left: 20px;"
+  h4 style="text-decoration: underline;"
+    = "Kinployment ##{kinployment.id}"
+
+  p
+    strong Kinployer: 
+    em = kinployment.kinployer ? "Kinployer ##{kinployment.kinployer.id}" : "None"
+
+  p
+    strong Kinployee: 
+    em = kinployment.kinployee ? "Kinployee ##{kinployment.kinployee.id}" : "None"
+
+  p
+    strong Preferred Availability: 
+    em = kinployment.preferred_availability
+
+  p
+    strong Cultural Backgrounds: 
+    em = kinployment.cultural_backgrounds.join( ', ' )
+
+  p
+    strong Culture Match Preference: 
+    em = kinployment.culture_match_preference
+
+  p
+    strong Preferred Languages: 
+    em = kinployment.preferred_languages.join( ', ' )
+
+  p
+    strong Location: 
+    em = "City: #{kinployment.location[:city]}, State: #{kinployment.location[:state]}"
+
+  p
+    strong Preferred Sex: 
+    em = kinployment.preferred_sex
+
+  p
+    strong Preferred Skills: 
+    em = kinployment.preferred_skills.join( ', ' )
+
+  p
+    strong
+      = link_to "Link", kinployment

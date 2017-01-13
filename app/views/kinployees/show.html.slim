@@ -1,39 +1,12 @@
-h1 Kinployees#show
+h1 = "Kinployee ##{@kinployee.id}"
 bold Show a Kinployee's information.
+
 hr
+h3 Kinployee Properties
 
-h3 User Properties:
+= render partial: 'kinployee', object: @kinployee
 
-p
-  strong email: 
-  em = @user.email
+hr
+h3 Kinployments
 
-h3 Kinployee Properties:
-
-p
-  strong availability: 
-  em = @kinployee.availability
-
-p
-  strong cultural_backgrounds: 
-  em = @kinployee.cultural_backgrounds.join( ', ' )
-
-p
-  strong culture_match_preference: 
-  em = @kinployee.culture_match_preference
-
-p
-  strong languages: 
-  em = @kinployee.languages.join( ', ' )
-
-p
-  strong location: 
-  em = "City: #{@kinployee.location[:city]}, State: #{@kinployee.location[:state]}"
-
-p
-  strong sex: 
-  em = @kinployee.sex
-
-p
-  strong skills: 
-  em = @kinployee.skills.join( ', ' )
+= render partial: 'kinployments/kinployment', collection: @kinployee.kinployments

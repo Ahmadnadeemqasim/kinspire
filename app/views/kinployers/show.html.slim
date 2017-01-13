@@ -1,8 +1,8 @@
-h1 Kinployers#show
+h1 = "Kinployer ##{@kinployer.id}"
 bold Show a Kinployer's information.
-hr
 
-h3 Actions:
+hr
+h3 Actions
 
 p
   = "Welcome to #{Company.string( :company_name )}!"
@@ -12,8 +12,12 @@ p
     = link_to "Creating a job", new_kinployment_path
   | !
 
-h3 User Properties:
+hr
+h3 Kinployer Properties
 
-p
-  strong email: 
-  em = @user.email
+= render partial: 'kinployer', object: @kinployer
+
+hr
+h3 Kinployments
+
+= render partial: 'kinployments/kinployment', collection: @kinployer.kinployments
