@@ -92,7 +92,7 @@ class KinploymentTest < ActiveSupport::TestCase
     kinployment.unmatch
     result_after = kinployment.kinployee
 
-    assert_equal kinployee, result_before
-    assert_equal nil, result_after
+    assert_equal  kinployee, result_before
+    assert_nil    result_after
   end
 end
