@@ -8,24 +8,28 @@ div style="margin-left: 20px;"
       em = nomination.overall_score
 
   p
-    strong Availability Score:
+    strong Availability Score: 
     em = nomination.score_for( :availability )
   p
-    strong Culture Score:
+    strong Culture Score: 
     em = nomination.score_for( :culture )
   p
-    strong Language Score:
+    strong Language Score: 
     em = nomination.score_for( :language )
   p
-    strong Location Score:
+    strong Location Score: 
     em = nomination.score_for( :location )
   p
-    strong Sex Score:
+    strong Sex Score: 
     em = nomination.score_for( :sex )
   p
-    strong Skills Score:
+    strong Skills Score: 
     em = nomination.score_for( :skills )
 
   p
     = link_to "Link", nomination.kinployee
+
+  p
+    strong
+      = link_to "Engage this Kinployee", engage_kinployment_path( @kinployment, nomination.kinployee ), method: :patch
 hr

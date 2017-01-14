@@ -1,25 +1,5 @@
 class KinploymentsController < ApplicationController
 
-  def new
-    return redirect_to new_job_1_path
-  end
-
-  def new_step_1
-    @kinployment = Kinployment.new
-  end
-
-  def new_step_2    # Prepare attributes to be passed to next form.
-    @preferred_skills       = params[:kinployment][:preferred_skills]         # Collection checkboxes always include an empty string.
-                                .map{ |s| "'#{s}'" }.join( ', ' )
-    @urgency                = params[:kinployment][:urgency]
-    @preferred_availability = params[:kinployment][:preferred_availability]
-    @city                   = params[:city]
-    @state                  = params[:state]
-
-    @kinployment = Kinployment.new
-  end
-
-
   def create
     # Fix attribute formats
     kp = kinployment_params
@@ -50,6 +30,42 @@ class KinploymentsController < ApplicationController
     else
       render 'new_step_2'
     end
+  end
+
+  def disengage
+    @kinployment = Kinployment.find( params[:id] )
+    @kinployment.disengage
+    @kinployment.save
+    redirect_to @kinployment
+  end
+
+  def engage
+    @kinployment  = Kinployment.find( params[:id] )
+    @kinployee    = Kinployee.find( params[:kinployee_id] )
+    if @kinployment.engage( @kinployee ) and @kinployment.save
+      redirect_to @kinployment
+    else
+      raise Exceptions::ApplicationError, "Failed to engage the indicated Kinployee."
+    end
+  end
+
+  def new
+    return redirect_to new_job_1_path
+  end
+
+  def new_step_1
+    @kinployment = Kinployment.new
+  end
+
+  def new_step_2    # Prepare attributes to be passed to next form.
+    @preferred_skills       = params[:kinployment][:preferred_skills]         # Collection checkboxes always include an empty string.
+                                .map{ |s| "'#{s}'" }.join( ', ' )
+    @urgency                = params[:kinployment][:urgency]
+    @preferred_availability = params[:kinployment][:preferred_availability]
+    @city                   = params[:city]
+    @state                  = params[:state]
+
+    @kinployment = Kinployment.new
   end
 
   def show

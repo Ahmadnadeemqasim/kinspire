@@ -4,8 +4,12 @@ bold Show a Kinployment's information.
 hr
 h3 Actions
 
-p
-  = link_to "View Kinployee Matches", kinployment_nominations_path( @kinployment )
+- if @kinployment.engaged?
+  p
+    = link_to "Disengage Kinployee", disengage_kinployment_path, method: :patch
+- else
+  p
+    = link_to "View Kinployee Matches", kinployment_nominations_path( @kinployment )
 
 hr
 h3 Kinployment Properties
