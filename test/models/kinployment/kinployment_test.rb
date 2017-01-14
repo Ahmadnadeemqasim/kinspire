@@ -63,6 +63,20 @@ class KinploymentTest < ActiveSupport::TestCase
     assert_equal kinployee, kinployment.kinployee
   end
 
+  test "must return the given Kinployment if successful" do
+    kinployment = Kinployment.new
+    kinployee = Kinployee.new
+
+    assert_equal kinployee, kinployment.engage( kinployee )
+  end
+
+  test "must return false if the Kinployment is already engaged" do
+    kinployment = Kinployment.new
+    kinployment.engage( Kinployee.new )
+
+    assert_not kinployment.engage( Kinployee.new )
+  end
+
   ##
   # #engaged?
 
