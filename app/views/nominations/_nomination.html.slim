@@ -1,0 +1,31 @@
+div style="margin-left: 20px;"
+  h4 style="text-decoration: underline;"
+    = "Kinployee ##{nomination.kinployee.id}"
+
+  p
+    strong
+      | Overall Score: 
+      em = nomination.overall_score
+
+  p
+    strong Availability Score:
+    em = nomination.score_for( :availability )
+  p
+    strong Culture Score:
+    em = nomination.score_for( :culture )
+  p
+    strong Language Score:
+    em = nomination.score_for( :language )
+  p
+    strong Location Score:
+    em = nomination.score_for( :location )
+  p
+    strong Sex Score:
+    em = nomination.score_for( :sex )
+  p
+    strong Skills Score:
+    em = nomination.score_for( :skills )
+
+  p
+    = link_to "Link", nomination.kinployee
+hr

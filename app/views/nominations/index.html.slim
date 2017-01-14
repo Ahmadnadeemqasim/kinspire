@@ -1,0 +1,8 @@
+h1 = "Kinployee Recommendations for Kinployment ##{@kinployment.id}"
+
+= link_to "Back to Kinployment", @kinployment
+
+hr
+h3 Recommendations
+
+= render partial: 'nomination', collection: @nominations

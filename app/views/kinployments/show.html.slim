@@ -2,6 +2,12 @@ h1 = "Kinployment ##{@kinployment.id}"
 bold Show a Kinployment's information.
 
 hr
+h3 Actions
+
+p
+  = link_to "View Kinployee Matches", kinployment_nominations_path( @kinployment )
+
+hr
 h3 Kinployment Properties
 
 = render partial: 'kinployment', object: @kinployment
