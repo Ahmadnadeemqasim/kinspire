@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :kinployers,    only: [ :show ]
   get     '/new-job-1',         to: 'kinployments#new_step_1'
   post    '/new-job-2',         to: 'kinployments#new_step_2'
-  resources :kinployments,  only: [ :show ] do
+  resources :kinployments,  only: [ :new, :create, :show ] do
     resources :nominations, only: [ :index ]
   end
 
