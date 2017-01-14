@@ -7,8 +7,6 @@ class Kinployment < ApplicationRecord
   serialize :preferred_languages,   Array
   serialize :preferred_skills,      Array
 
-  class AlreadyEngagedError < Exceptions::ApplicationError; end
-
   ##
   # Assign a Kinployee to this Kinployment.
 
