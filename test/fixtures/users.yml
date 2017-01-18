@@ -2,19 +2,23 @@
 
 vader:
   email:            darth.vader@empire.gov
+  name:             "Anakin Skywalker"
   password_digest:  <%= password_digest( "imURfatha!" ) %> # Keep this password unique. It is used to test the login system.
 
 valid_admin_user:
   email:            admin@example.com
+  name:             "Joe Admin"
   password_digest:  <%= standard_password_digest %>
   role:             admin
 
 valid_kinployee_user:
   email:            kinployee@example.com
+  name:             "Joe Kinployee"
   password_digest:  <%= standard_password_digest %>
   role:             kinployee
 
 valid_kinployer_user:
   email:            kinployer@example.com
+  name:             "Joe Kinployer"
   password_digest:  <%= standard_password_digest %>
   role:             kinployer
