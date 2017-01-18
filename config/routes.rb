@@ -11,13 +11,11 @@ Rails.application.routes.draw do
   post    '/kinployer-signup',      to: 'kinployers#create'
   resources :kinployees,            only: [ :show ]
   resources :kinployers,            only: [ :show ]
-  get     '/new-job-1',             to: 'kinployments#new_step_1'
-  post    '/new-job-2',             to: 'kinployments#new_step_2'
   resources :kinployments,          only: [ :new, :create, :show ] do
     get   'nominations',            to: 'nominations#index'
     member do
-      patch 'disengage',            to: 'kinployments#disengage', as: 'disengage'
       patch 'engage/:kinployee_id', to: 'kinployments#engage',    as: 'engage'
+      patch 'disengage',            to: 'kinployments#disengage', as: 'disengage'
     end
   end
   resources :users,                 only: [ :show ]
