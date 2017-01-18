@@ -7,6 +7,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
 
     assert_no_difference 'User.count', "Invalid signup submission should not cause a new User to be created." do
       post users_path, params: { user: {  email:                  "invalid",
+                                          name:                   "",
                                           password:               "foo",
                                           password_confirmation:  "bar",
                                           role:                   "invalid" } } 
@@ -18,6 +19,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
 
   test "user submits valid signup data" do
     email     = "valid@email.com"
+    name      = "Sarah Valid"
     password  = standard_password
     role      = "admin"
 
@@ -26,6 +28,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
 
     assert_difference 'User.count', 1, "Valid signup submission should create a new user." do
       post users_path, params: { user: {  email:                  email,
+                                          name:                   name,
                                           password:               password,
                                           password_confirmation:  password,
                                           role:                   role } }

@@ -4,6 +4,7 @@ class UserValidationTest < ActiveSupport::TestCase
 
   def setup
     @user = User.new( email: "masterchief@unsc.mil",
+                      name: "John Smith",
                       password: standard_password, password_confirmation: standard_password,
                       role: 'admin' )
   end
@@ -56,6 +57,14 @@ class UserValidationTest < ActiveSupport::TestCase
     duplicate_user.email = @user.email.upcase # uniqueness validation should be case-insensitive
     @user.save
     assert_not duplicate_user.valid?, "Duplicate User email should not be valid."
+  end
+
+  ##
+  # Name
+
+  test "name should be required present and not blank" do
+    @user.name = ""
+    assert_not @user.valid?, "Blank User name should not be valid."
   end
 
   ##

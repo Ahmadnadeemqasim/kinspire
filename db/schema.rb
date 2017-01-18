@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161218234259) do
+ActiveRecord::Schema.define(version: 20170118220055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20161218234259) do
     t.text     "location"
     t.string   "preferred_sex"
     t.text     "preferred_skills"
+    t.string   "name"
     t.index ["kinployee_id"], name: "index_kinployments_on_kinployee_id", using: :btree
     t.index ["kinployer_id"], name: "index_kinployments_on_kinployer_id", using: :btree
   end
@@ -59,6 +60,7 @@ ActiveRecord::Schema.define(version: 20161218234259) do
     t.string   "password_digest"
     t.string   "remember_login_digest"
     t.string   "role"
+    t.string   "name"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
