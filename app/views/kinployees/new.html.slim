@@ -3,6 +3,12 @@ h2 Sign Up as a Kinployee
 = form_for( @user, url: kinployee_signup_path ) do |user_form|
   = render 'shared/error_messages'
 
+  / Name
+  h4 = user_form.label :name, "Full Name"
+  = user_form.text_field :name
+  br
+  br
+
   / Email
   h4 = user_form.label :email
   = user_form.email_field :email

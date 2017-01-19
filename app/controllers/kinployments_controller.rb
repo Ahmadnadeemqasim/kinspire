@@ -53,11 +53,12 @@ class KinploymentsController < ApplicationController
       params
         .require( :kinployment )
         .permit(
-          :preferred_availability,
+          :name,
           { cultural_backgrounds: [] },
           :culture_match_preference,
-          { preferred_languages: [] },
           { location: [ :city, :state ] },
+          :preferred_availability,
+          { preferred_languages: [] },
           :preferred_sex,
           { preferred_skills: [] } )
     end

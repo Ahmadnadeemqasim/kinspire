@@ -29,9 +29,10 @@ class KinployersController < ApplicationController
     def user_params
       params
         .require( :user )
-          .permit(
-            :email,
-            :password, :password_confirmation,
-            :role )
+        .permit(
+          :email,
+          :name,
+          :password, :password_confirmation,
+          :role )
     end
 end

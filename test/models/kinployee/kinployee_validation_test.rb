@@ -31,6 +31,6 @@ class KinployeeValidationTest < ActiveSupport::TestCase
     assert @kinployee.save
     new_kinployee = @kinployee.dup
     assert_not new_kinployee.valid?,                      "Associated User must be unique."
-    assert new_kinployee.errors.added?( :user, :taken ),  "Correct error should have been added."
+    assert new_kinployee.errors.added?( :user, :taken )
   end
 end

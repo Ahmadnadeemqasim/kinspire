@@ -1,14 +1,20 @@
 div style="margin-left: 20px;"
   h4 style="text-decoration: underline;"
-    = "Kinployment ##{kinployment.id}"
+    = kinployment.name
 
   p
     strong Kinployer: 
-    em = kinployment.kinployer ? "Kinployer ##{kinployment.kinployer.id}" : "None"
+    - if kinployment.kinployer
+      = link_to "#{kinployment.kinployer.user.name}", kinployment.kinployer
+    - else
+      | None
 
   p
     strong Kinployee: 
-    em = kinployment.kinployee ? "Kinployee ##{kinployment.kinployee.id}" : "None"
+    - if kinployment.kinployee
+      = link_to "#{kinployment.kinployee.user.name}", kinployment.kinployee
+    - else
+      | None
 
   p
     strong Preferred Availability: 

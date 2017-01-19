@@ -61,6 +61,7 @@ class KinployeesController < ApplicationController
         .require( :user )
         .permit(
           :email,
+          :name,
           :password, :password_confirmation,
           :role )
     end
