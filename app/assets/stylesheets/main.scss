@@ -6,12 +6,14 @@ body {
   padding-top: 51px;
 }
 
-.center-2d {
-  // This requires the parent to have:
-  // position: relative;
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate( -50%, -50% );
-  -ms-transform: translate( -50%, -50% );
+.btn {
+  border: none;
+  border-radius:          0px; /* future proofing */
+  -moz-border-radius:     0px;
+  -webkit-border-radius:  0px;
+  margin: 10px;
+}
+
+.btn-primary {
+  background-color: $call-to-action-color;
 }
