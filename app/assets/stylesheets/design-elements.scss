@@ -1,4 +1,16 @@
 ////
-// Colors
+// Color Palette
 
-$call-to-action-color: #7ED321;
+$color-palette: (
+  gray:           #E0E0E0,
+  kinspire-green: #7ED321,
+  hint-of-red:    #F9F9F9,
+  white:          #FFFFFF,
+);
+
+////
+// Color Scheme
+
+$border-color:          map-get( $color-palette, gray );
+$call-to-action-color:  map-get( $color-palette, kinspire-green );
+$margin-color:          map-get( $color-palette, hint-of-red );
