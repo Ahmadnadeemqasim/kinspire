@@ -1,112 +1,114 @@
-h2 Sign Up as a Kinployee
+= provide( :page_title, "Sign Up - Kinployee" )
 
-= form_for( @user, url: kinployee_signup_path ) do |user_form|
-  = render 'shared/error_messages'
+div#kinployees-new.page.col-md-8.col-md-offset-2
 
-  / Name
-  h4 = user_form.label :name, "Full Name"
-  = user_form.text_field :name
-  br
-  br
-
-  / Email
-  h4 = user_form.label :email
-  = user_form.email_field :email
-  br
-  br
-  / Password
-  h4 = user_form.label :password
-  = user_form.password_field :password
-  br
-  br
-  / Password Confirmation
-  h4 = user_form.label :password_confirmation, "Confirm Password"
-  = user_form.password_field :password_confirmation
-  br
-  br
-
-  
-  / Kinployee Role
-  = user_form.hidden_field :role, value: 'kinployee'
-  h2 Kinployee Information
+  h2 Sign Up as a Kinployee
   hr
-  = user_form.fields_for :kinployee do |kinployee_form|
 
-    / Availability
-    h4 = kinployee_form.label :availability
-    = kinployee_form.number_field :availability
-    br
-    br
-    / Cultural Background
-    h4 = kinployee_form.label :cultural_backgrounds
-    - cultural_background_options = [ \
-        "South American",
-        "Caribbean/West Indian",
-        "North African",
-        "Central African",
-        "South African",
-        "East Asian",
-        "South Asian",
-        "Southeast Asian",
-        "Middle Eastern" ]
-    = kinployee_form.collection_check_boxes :cultural_backgrounds, cultural_background_options,
-                                            :to_s, :to_s do |cultural_backgrounds_builder|
-      = cultural_backgrounds_builder.check_box
-      = cultural_backgrounds_builder.label
-      br
-    br
-    / Culture Match Preference
-    h4 = kinployee_form.label :culture_match_preference
-    - culture_match_preference_options =  [ \
-        [ 'similar',        "Similar" ],
-        [ 'not_similar',    "Not Similar" ],
-        [ 'no_preference',  "No Preference" ] ]
-    = kinployee_form.collection_radio_buttons :culture_match_preference, culture_match_preference_options,
-                                              :first, :last do |culture_match_preference_builder|
-      = culture_match_preference_builder.radio_button
-      = culture_match_preference_builder.label
-      br
-    br
-    / Languages
-    h4 = kinployee_form.label :languages
-    = kinployee_form.text_field :languages
-    br
-    br
-    / Location
-    h4 = kinployee_form.label :location
-    = kinployee_form.label :city
-    = kinployee_form.text_field :city
-    = kinployee_form.label :state
-    = kinployee_form.text_field :state
-    br
-    br
-    / Sex
-    h4 = kinployee_form.label :sex
-    - sex_options = [ \
-        [ 'male',   "Male" ],
-        [ 'female', "Female" ],
-        [ 'other',  "Something Else" ] ]
-    = kinployee_form.collection_radio_buttons :sex, sex_options, :first, :last do |sex_builder|
-      = sex_builder.radio_button
-      = sex_builder.label
-      br
-    br
-    / Skills
-    h4 = kinployee_form.label :skills
-    - skills_options = [ \
-        "Home - Housekeeping",
-        "Home - Handiwork",
-        "Home - Childcare",
-        "Home - Cooking",
-        "Business - Secretarial",
-        "Business - Filing" ]
-    = kinployee_form.collection_check_boxes :skills, skills_options, :to_s, :to_s do |skills_builder|
-      = skills_builder.check_box
-      = skills_builder.label
-      br
+  = form_for( @user, url: kinployee_signup_path ) do |user_form|
+    = render 'shared/error_messages'
+
+    / Name
+    h4 = user_form.label :name, "Full Name"
+    = user_form.text_field :name
     br
 
+    / Email
+    h4 = user_form.label :email
+    = user_form.email_field :email
+    br
 
-  = user_form.submit "Sign Up"
-  br
-  br
+    / Password
+    h4 = user_form.label :password
+    = user_form.password_field :password
+    br
+
+    / Password Confirmation
+    h4 = user_form.label :password_confirmation, "Confirm Password"
+    = user_form.password_field :password_confirmation
+    br
+    
+    / Kinployee Role
+    = user_form.hidden_field :role, value: 'kinployee'
+    h2 Kinployee Information
+    hr
+    = user_form.fields_for :kinployee do |kinployee_form|
+
+      / Availability
+      h4 = kinployee_form.label :availability
+      = kinployee_form.number_field :availability
+      br
+
+      / Cultural Background
+      h4 = kinployee_form.label :cultural_backgrounds
+      - cultural_background_options = [ \
+          "South American",
+          "Caribbean/West Indian",
+          "North African",
+          "Central African",
+          "South African",
+          "East Asian",
+          "South Asian",
+          "Southeast Asian",
+          "Middle Eastern" ]
+      = kinployee_form.collection_check_boxes :cultural_backgrounds, cultural_background_options,
+                                              :to_s, :to_s do |cultural_backgrounds_builder|
+        = cultural_backgrounds_builder.check_box
+        = cultural_backgrounds_builder.label
+        br
+
+      / Culture Match Preference
+      h4 = kinployee_form.label :culture_match_preference
+      - culture_match_preference_options =  [ \
+          [ 'similar',        "Similar" ],
+          [ 'not_similar',    "Not Similar" ],
+          [ 'no_preference',  "No Preference" ] ]
+      = kinployee_form.collection_radio_buttons :culture_match_preference, culture_match_preference_options,
+                                                :first, :last do |culture_match_preference_builder|
+        = culture_match_preference_builder.radio_button
+        = culture_match_preference_builder.label
+        br
+
+      / Languages
+      h4 = kinployee_form.label :languages
+      = kinployee_form.text_field :languages
+      br
+
+      / Location
+      h4 = kinployee_form.label :location
+      = kinployee_form.label :city
+      = kinployee_form.text_field :city
+      br
+      = kinployee_form.label :state
+      = kinployee_form.text_field :state
+      br
+
+      / Sex
+      h4 = kinployee_form.label :sex
+      - sex_options = [ \
+          [ 'male',   "Male" ],
+          [ 'female', "Female" ],
+          [ 'other',  "Something Else" ] ]
+      = kinployee_form.collection_radio_buttons :sex, sex_options, :first, :last do |sex_builder|
+        = sex_builder.radio_button
+        = sex_builder.label
+        br
+
+      / Skills
+      h4 = kinployee_form.label :skills
+      - skills_options = [ \
+          "Home - Housekeeping",
+          "Home - Handiwork",
+          "Home - Childcare",
+          "Home - Cooking",
+          "Business - Secretarial",
+          "Business - Filing" ]
+      = kinployee_form.collection_check_boxes :skills, skills_options, :to_s, :to_s do |skills_builder|
+        = skills_builder.check_box
+        = skills_builder.label
+        br
+
+    br
+    = user_form.submit "Sign Up"
+    br
+    br

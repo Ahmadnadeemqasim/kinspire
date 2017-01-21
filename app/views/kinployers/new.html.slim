@@ -1,35 +1,37 @@
-h2 Sign Up as a Kinployer
+= provide( :page_title, "Sign Up - Kinployer" )
 
-= form_for( @user, url: kinployer_signup_path ) do |user_form|
-  = render 'shared/error_messages'
+div#kinployers-new.page.col-md-8.col-md-offset-2
 
-  / Name
-  h4 = user_form.label :name, "Full Name"
-  = user_form.text_field :name
-  br
-  br
+  h2 Sign Up as a Kinployer
+  hr
 
-  / Email
-  h4 = user_form.label :email
-  = user_form.email_field :email
-  br
-  br
+  = form_for( @user, url: kinployer_signup_path ) do |user_form|
+    = render 'shared/error_messages'
 
-  / Password
-  h4 = user_form.label :password
-  = user_form.password_field :password
-  br
-  br
+    / Name
+    h4 = user_form.label :name, "Full Name"
+    = user_form.text_field :name
+    br
 
-  / Password Confirmation
-  h4 = user_form.label :password_confirmation, "Confirm Password"
-  = user_form.password_field :password_confirmation
-  br
-  br
+    / Email
+    h4 = user_form.label :email
+    = user_form.email_field :email
+    br
 
-  / Kinployer Role
-  = user_form.hidden_field :role, value: 'kinployer'
+    / Password
+    h4 = user_form.label :password
+    = user_form.password_field :password
+    br
 
-  = user_form.submit "Sign Up"
-  br
-  br
+    / Password Confirmation
+    h4 = user_form.label :password_confirmation, "Confirm Password"
+    = user_form.password_field :password_confirmation
+    br
+
+    / Kinployer Role
+    = user_form.hidden_field :role, value: 'kinployer'
+
+    br
+    = user_form.submit "Sign Up"
+    br
+    br

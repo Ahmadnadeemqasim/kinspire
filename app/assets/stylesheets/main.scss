@@ -50,6 +50,10 @@ input {
   border: 1px solid map-get( $color-palette, gray );
 }
 
+input[type="checkbox"], input[type="radio"] {
+  margin-right:  10px;
+}
+
 input[type="submit"] {
   @extend .btn-primary;
 }
