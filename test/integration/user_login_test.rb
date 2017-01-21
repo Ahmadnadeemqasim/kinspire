@@ -13,7 +13,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     post login_path, params: { session: { email: "", password: "" } }
     assert_response :success,       "Invalid login submission should generate an HTTP SUCCESS response."
     assert_not is_logged_in?,       "Invalid login submission should not log any user in."
-    assert_template 'sessions/new', "Log in page should be rerendered after invalid login attempt."
+    assert_template 'sessions/login', "Log in page should be rerendered after invalid login attempt."
   end
 
   test "user submits valid credentials at login and then logs out" do
