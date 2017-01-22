@@ -11,7 +11,6 @@ div#kinployments-new.page.col-md-8.col-md-offset-2
     h4 = kinployment_form.label :name, "Name this Job"
     = kinployment_form.text_field :name
     br
-    br
 
     h2 Step 1: Tell us about your work requirements.
 
@@ -28,7 +27,7 @@ div#kinployments-new.page.col-md-8.col-md-offset-2
       = preferred_skills_builder.check_box
       = preferred_skills_builder.label
       br
-    br
+
     / Urgency
     h4 = "How soon do you need your helper to start?"
     p style = "color: red;"
@@ -43,21 +42,21 @@ div#kinployments-new.page.col-md-8.col-md-offset-2
       = radio_button_tag 'kinployment[urgency]', option
       = label_tag "kinployment_urgency_#{option}", option
       br
-    br
+
     / Preferred Availability
     h4 = kinployment_form.label :preferred_availability, "How many hours of help do you need per week?"
     = kinployment_form.number_field :preferred_availability
     br
-    br
+
     / Location
     h4 = kinployment_form.label :location, "What city and state do you need help in?"
     = fields_for :location do |location_form|
       = label_tag :city
       = text_field_tag :city
+      br
       = label_tag :state
       = text_field_tag :state
-    br
-    br
+      br
 
     h2 Step 2: Culture, language, and other preferences.
     = "#{Company.string( :company_name )} aims to match helpers and employers of similar culture backgrounds to create a unique relationship and social impact."
@@ -79,7 +78,7 @@ div#kinployments-new.page.col-md-8.col-md-offset-2
       = cultural_backgrounds_builder.check_box
       = cultural_backgrounds_builder.label
       br
-    br
+
     / Culture Match Preference
     h4 = kinployment_form.label :culture_match_preference, "Would you prefer your helper to have a similar background to yourself?"
     - culture_match_preference_options =  [ \
@@ -91,12 +90,12 @@ div#kinployments-new.page.col-md-8.col-md-offset-2
       = culture_match_preference_builder.radio_button
       = culture_match_preference_builder.label
       br
-    br
+
     / Preferred Languages
     h4 = kinployment_form.label :preferred_languages, "What languages do you need your helper to be able to speak?"
     = kinployment_form.text_field :preferred_languages
     br
-    br
+
     / Preferred Sex
     h4 = kinployment_form.label :preferred_sex, "Would you prefer to hire a male or female?"
     - sex_options = [ \
@@ -107,13 +106,13 @@ div#kinployments-new.page.col-md-8.col-md-offset-2
       = sex_builder.radio_button
       = sex_builder.label
       br
-    br
+
     / Comments
     h4 = kinployment_form.label :comments, "Is there anything else you'd like to tell us so that we can find a good match?"
     = text_area_tag 'kinployment[comments]'
     br
-    br
 
+    br
     = kinployment_form.submit "Finish"
     br
     br
