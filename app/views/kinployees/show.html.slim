@@ -1,8 +1,10 @@
-h1 = @kinployee.user.name
+= provide( :page_title, "#{@user.name}" )
+
+h1 = @user.name
 p
   strong Kinployee
-
 hr
+
 h3 Kinployee Properties
 
 = render partial: 'kinployee', object: @kinployee

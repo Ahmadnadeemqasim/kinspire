@@ -1,8 +1,10 @@
+= provide( :page_title, "#{@kinployment.name}" )
+
 h1 = @kinployment.name
 p
   strong Kinployment
-
 hr
+
 h3 Actions
 
 - if @kinployment.engaged?

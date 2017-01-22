@@ -1,8 +1,10 @@
-h1 = @kinployer.user.name
+= provide( :page_title, "#{@user.name}" )
+
+h1 = @user.name
 p
   strong Kinployer
-
 hr
+
 h3 Actions
 
 p
