@@ -1,12 +1,14 @@
 = provide( :page_title, "Recommendations" )
 
-h1
-  | Kinployee Recommendations for 
-  em = @kinployment.name
+div#nominations-index.page.col-md-12
 
-= link_to "Back to Kinployment", @kinployment
-hr
+  h1
+    | Kinployee Recommendations for 
+    em = @kinployment.name
 
-h3 Recommendations
+  = link_to "Back to Kinployment", @kinployment
+  hr
 
-= render partial: 'nomination', collection: @nominations
+  h3 Recommendations
+
+  = render partial: 'nomination', collection: @nominations

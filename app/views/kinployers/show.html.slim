@@ -1,26 +1,28 @@
 = provide( :page_title, "#{@user.name}" )
 
-h1 = @user.name
-p
-  strong Kinployer
-hr
+div#kinployers-show.page.col-md-12
 
-h3 Actions
+  h1 = @user.name
+  p
+    strong Kinployer
+  hr
 
-p
-  = "Welcome to #{Company.string( :company_name )}!"
-  br
-  | Get started by 
-  strong
-    = link_to "Creating a job", new_kinployment_path
-  | !
+  h3 Actions
 
-hr
-h3 Kinployer Properties
+  p
+    = "Welcome to #{Company.string( :company_name )}!"
+    br
+    | Get started by 
+    strong
+      = link_to "Creating a job", new_kinployment_path
+    | !
 
-= render partial: 'kinployer', object: @kinployer
+  hr
+  h3 Kinployer Properties
 
-hr
-h3 Kinployments
+  = render partial: 'kinployer', object: @kinployer
 
-= render partial: 'kinployments/kinployment', collection: @kinployer.kinployments
+  hr
+  h3 Kinployments
+
+  = render partial: 'kinployments/kinployment', collection: @kinployer.kinployments

@@ -1,15 +1,17 @@
 = provide( :page_title, "#{@user.name}" )
 
-h1 = @user.name
-p
-  strong Kinployee
-hr
+div#kinployees-show.page.col-md-12
 
-h3 Kinployee Properties
+  h1 = @user.name
+  p
+    strong Kinployee
+  hr
 
-= render partial: 'kinployee', object: @kinployee
+  h3 Kinployee Properties
 
-hr
-h3 Kinployments
+  = render partial: 'kinployee', object: @kinployee
 
-= render partial: 'kinployments/kinployment', collection: @kinployee.kinployments
+  hr
+  h3 Kinployments
+
+  = render partial: 'kinployments/kinployment', collection: @kinployee.kinployments
