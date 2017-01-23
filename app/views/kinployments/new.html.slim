@@ -101,7 +101,7 @@ div#kinployments-new.page.col-md-8.col-md-offset-2
     - sex_options = [ \
         [ 'male',   "Male" ],
         [ 'female', "Female" ],
-        [ 'other',  "Doesn't Matter" ] ]
+        [ 'no_preference',  "Doesn't Matter" ] ]
     = kinployment_form.collection_radio_buttons :preferred_sex, sex_options, :first, :last do |sex_builder|
       = sex_builder.radio_button
       = sex_builder.label
