@@ -1,35 +1,125 @@
-div style="margin-left: 20px;"
-  h4 style="text-decoration: underline;"
-    = nomination.kinployee.user.name
+div#_nomination.card.col-md-12
 
-  p
-    strong
-      | Overall Score: 
-      em = nomination.overall_score
+  div.card-header
+    div.row
+      div.card-title.col-md-3 = link_to nomination.kinployee.user.name, nomination.kinployee
+      div.key.col-md-3.col-md-offset-6
+        = link_to \
+            "Engage this Kinployee",
+            engage_kinployment_path( @kinployment, nomination.kinployee ),
+            method: :patch,
+            class:  'btn btn-block btn-primary'
 
-  p
-    strong Availability Score: 
-    em = nomination.score_for( :availability )
-  p
-    strong Culture Score: 
-    em = nomination.score_for( :culture )
-  p
-    strong Language Score: 
-    em = nomination.score_for( :language )
-  p
-    strong Location Score: 
-    em = nomination.score_for( :location )
-  p
-    strong Sex Score: 
-    em = nomination.score_for( :sex )
-  p
-    strong Skills Score: 
-    em = nomination.score_for( :skills )
+    div.row
+      div.overall-score.col-md-3
+        | Overall Score: 
+        span.value = nomination.overall_score.round(2)
 
-  p
-    = link_to "Link", nomination.kinployee
 
-  p
-    strong
-      = link_to "Engage this Kinployee", engage_kinployment_path( @kinployment, nomination.kinployee ), method: :patch
-hr
+  table.card-content.table
+    tr
+      th Score
+      th = nomination.kinployment.name
+      th = nomination.kinployee.user.name
+
+    / Availability
+    tr
+      td
+        div.attribute
+          div.key Availability Score:
+          div.value = nomination.score_for( :availability ).round(2)
+      td
+        div.attribute
+          div.key Preferred Availability:
+          div.value = nomination.kinployment.preferred_availability
+      td
+        div.attribute
+          div.key Availability:
+          div.value = nomination.kinployee.availability
+
+    / Skills
+    tr
+      td
+        div.attribute
+          div.key Skills Score:
+          div.value = nomination.score_for( :skills ).round(2)
+      td
+        div.attribute
+          div.key Preferred Skills:
+          - nomination.kinployment.preferred_skills.each do |preferred_skill|
+            div.value = preferred_skill
+      td
+        div.attribute
+          div.key Skills:
+          - nomination.kinployee.skills.each do |skill|
+            div.value = skill
+
+    / Location
+    tr
+      td
+        div.attribute
+          div.key Location Score:
+          div.value = nomination.score_for( :location ).round(2)
+      td
+        div.attribute
+          div.key Location:
+          div.value = "#{ nomination.kinployment.location[:city] }, #{ nomination.kinployment.location[:state] }"
+      td
+        div.attribute
+          div.key Location:
+          div.value = "#{ nomination.kinployee.location[:city] }, #{ nomination.kinployee.location[:state] }"
+
+    / Language
+    tr
+      td
+        div.attribute
+          div.key Language Score:
+          div.value = nomination.score_for( :language ).round(2)
+      td
+        div.attribute
+          div.key Preferred Languages:
+          - nomination.kinployment.preferred_languages.each do |preferred_language|
+            div.value = preferred_language
+      td
+        div.attribute
+          div.key Languages:
+          - nomination.kinployee.languages.each do |language|
+            div.value = language
+
+    / Sex
+    tr
+      td
+        div.attribute
+          div.key Sex Score:
+          div.value = nomination.score_for( :sex ).round(2)
+      td
+        div.attribute
+          div.key Preferred Sex:
+          div.value = nomination.kinployment.preferred_sex
+      td
+        div.attribute
+          div.key Sex:
+          div.value = nomination.kinployee.sex
+
+    / Culture
+    tr
+      td
+        div.attribute
+          div.key Culture Score:
+          div.value = nomination.score_for( :culture ).round(2)
+      td
+        div.attribute
+          div.key Culture Match Preference:
+          div.value = nomination.kinployment.culture_match_preference
+        div.attribute
+          div.key Cultural Backgrounds:
+          - nomination.kinployment.cultural_backgrounds.each do |cultural_background|
+            div.value = cultural_background
+      td
+        div.attribute
+          div.key Culture Match Preference:
+          div.value = nomination.kinployee.culture_match_preference
+        div.attribute
+          div.key Cultural Backgrounds:
+          - nomination.kinployee.cultural_backgrounds.each do |cultural_background|
+            div.value = cultural_background

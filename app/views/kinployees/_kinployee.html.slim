@@ -1,38 +1,48 @@
-div style="margin-left: 20px;"
-  h4 style="text-decoration: underline;"
-    = kinployee.user.name
+div#_kinployee.card.col-md-12
 
-  p
-    strong User Email: 
-    em = kinployee.user.email
+  div.card-header
+    div.card-title = link_to kinployee.user.name, kinployee
 
-  p
-    strong Availability: 
-    em = kinployee.availability
+  div.card-content.row
+    div.col-md-3
 
-  p
-    strong Cultural Backgrounds: 
-    em = kinployee.cultural_backgrounds.join( ', ' )
+      div.attribute
+        div.key User Email:
+        div.value = kinployee.user.email
 
-  p
-    strong Culture Match Preference: 
-    em = kinployee.culture_match_preference
+      div.attribute
+        div.key Location:
+        div.value = "#{kinployee.location[:city]}, #{kinployee.location[:state]}"
 
-  p
-    strong Languages: 
-    em = kinployee.languages.join( ', ' )
+      div.attribute
+        div.key Sex:
+        div.value = kinployee.sex
 
-  p
-    strong Location: 
-    em = "City: #{kinployee.location[:city]}, State: #{kinployee.location[:state]}"
+      div.attribute
+        div.key Availability:
+        div.value = kinployee.availability
 
-  p
-    strong Sex: 
-    em = kinployee.sex
+    div.col-md-3
 
-  p
-    strong Skills: 
-    em = kinployee.skills.join( ', ' )
+      div.attribute
+        div.key Skills:
+        - kinployee.skills.each do |skill|
+          div.value = skill
 
-  p
-    = link_to "Link", kinployee
+    div.col-md-3
+    
+      div.attribute
+        div.key Languages:
+        - kinployee.languages.each do |language|
+          div.value = language
+
+    div.col-md-3
+
+      div.attribute
+        div.key Culture Match Preference:
+        div.value = kinployee.culture_match_preference
+
+      div.attribute
+        div.key Cultural Backgrounds:
+        - kinployee.cultural_backgrounds.each do |cultural_background|
+          div.value = cultural_background

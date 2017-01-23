@@ -1,0 +1,14 @@
+#_nomination {
+
+  table {
+    background-color: map-get( $color-palette, hint-of-red )
+  }
+
+  .overall-score {
+    font-size:  1.7rem;
+
+    .value {
+      color: map-get( $color-palette, kinspire-green );
+    }
+  }
+}

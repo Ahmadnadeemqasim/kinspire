@@ -1,48 +1,60 @@
-div style="margin-left: 20px;"
-  h4 style="text-decoration: underline;"
-    = kinployment.name
+div#_kinployment.card.col-md-12
 
-  p
-    strong Kinployer: 
-    - if kinployment.kinployer
-      = link_to "#{kinployment.kinployer.user.name}", kinployment.kinployer
-    - else
-      | None
+  div.card-header
+    div.card-title = link_to kinployment.name, kinployment
 
-  p
-    strong Kinployee: 
-    - if kinployment.kinployee
-      = link_to "#{kinployment.kinployee.user.name}", kinployment.kinployee
-    - else
-      | None
+  div.card-content.row
+    div.col-md-3
 
-  p
-    strong Preferred Availability: 
-    em = kinployment.preferred_availability
+      div.attribute
+        div.key Kinployer:
+        div.value
+          - if kinployment.kinployer
+            = link_to "#{kinployment.kinployer.user.name}", kinployment.kinployer
+          - else
+            | None
 
-  p
-    strong Cultural Backgrounds: 
-    em = kinployment.cultural_backgrounds.join( ', ' )
+      div.attribute
+        div.key Kinployee:
+        div.value
+          - if kinployment.kinployee
+            = link_to "#{kinployment.kinployee.user.name}", kinployment.kinployee
+          - else
+            | None
 
-  p
-    strong Culture Match Preference: 
-    em = kinployment.culture_match_preference
+      div.attribute
+        div.key Location:
+        div.value = "#{kinployment.location[:city]}, #{kinployment.location[:state]}"
 
-  p
-    strong Preferred Languages: 
-    em = kinployment.preferred_languages.join( ', ' )
+      div.attribute
+        div.key Preferred Sex:
+        div.value = kinployment.preferred_sex
 
-  p
-    strong Location: 
-    em = "City: #{kinployment.location[:city]}, State: #{kinployment.location[:state]}"
+      div.attribute
+        div.key Preferred Availability:
+        div.value = kinployment.preferred_availability
 
-  p
-    strong Preferred Sex: 
-    em = kinployment.preferred_sex
+    div.col-md-3
 
-  p
-    strong Preferred Skills: 
-    em = kinployment.preferred_skills.join( ', ' )
+      div.attribute
+        div.key Preferred Skills:
+        - kinployment.preferred_skills.each do |preferred_skill|
+          div.value = preferred_skill
 
-  p
-    = link_to "Link", kinployment
+    div.col-md-3
+
+      div.attribute
+        div.key Preferred Languages:
+        - kinployment.preferred_languages.each do |preferred_language|
+          div.value = preferred_language
+
+    div.col-md-3
+
+      div.attribute
+        div.key Culture Match Preference:
+        div.value = kinployment.culture_match_preference
+
+      div.attribute
+        div.key Cultural Backgrounds:
+        - kinployment.cultural_backgrounds.each do |cultural_background|
+          div.value = cultural_background

@@ -1,0 +1,33 @@
+.card {
+  border:         1px solid map-get( $color-palette, gray );
+  margin-bottom:  10px;
+  padding:        5px 15px 10px;
+
+  .attribute {
+    margin-bottom:  2px;
+
+    .key {
+      font-weight:  bold;
+      width:        100%;
+    }
+
+    .value {
+      padding-left: 15px;
+      width:        100%;
+    }
+  }
+
+  .card-content {
+    border-top:   1px solid map-get( $color-palette, gray );
+    margin:       auto 2px;
+    padding-top:  5px;
+  }
+
+  .card-header {
+    margin: 10px auto 5px;
+  }
+
+  .card-title {
+    font-size:  2rem;
+  }
+}
