@@ -11,20 +11,15 @@ div#kinployments-show.page.col-md-12
 
   - if @kinployment.engaged?
     p
-      = link_to "Disengage Kinployee", disengage_kinployment_path, method: :patch
+      = link_to "Disengage Kinployee", disengage_kinployment_path, method: :patch, class: 'btn btn-danger'
   - else
     p
-      = link_to "View Kinployee Matches", kinployment_nominations_path( @kinployment )
+      = link_to "View Kinployee Matches", kinployment_nominations_path( @kinployment ), class: 'btn btn-primary'
 
   hr
   h3 Kinployment Properties
 
   = render partial: 'kinployment', object: @kinployment
-
-  hr
-  h3 Kinployer Properties
-
-  = render partial: 'kinployers/kinployer', object: @kinployer
 
   hr
   h3 Kinployee Properties
@@ -35,3 +30,8 @@ div#kinployments-show.page.col-md-12
     p style = "color: red;"
       strong
         em This Kinployment has not yet been matched with a Kinployee.
+
+  hr
+  h3 Kinployer Properties
+
+  = render partial: 'kinployers/kinployer', object: @kinployer

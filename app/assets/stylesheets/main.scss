@@ -24,21 +24,25 @@ div.page {
 ////
 // Buttons
 
-%btn {
-  @extend .btn;           // Bootstrap 3 .btn.
+%btn-borders {
   border-radius:          0px;
   -moz-border-radius:     0px;
   -webkit-border-radius:  0px;
 }
 
+.btn-danger {
+  @extend %btn-borders;
+  border:           none;
+}
+
 .btn-default {
-  @extend           %btn;
+  @extend           %btn-borders;
   background-color: map-get( $color-palette, white );
   border:           1px solid $border-color;
 }
 
 .btn-primary {
-  @extend           %btn;
+  @extend           %btn-borders;
   background-color: $call-to-action-color;
   border:           none;
 }
