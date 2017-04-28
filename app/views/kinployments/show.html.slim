@@ -1,0 +1,36 @@
+= provide( :page_title, "#{@kinployment.name}" )
+
+div#kinployments-show.page.col-md-12
+
+  h1 = @kinployment.name
+  p
+    strong Kinployment
+  hr
+
+  h3 Actions
+  - if @kinployment.engaged?
+    p
+      = link_to "Disengage Kinployee", disengage_kinployment_path, method: :patch, class: 'btn btn-danger'
+  - else
+    p
+        = link_to "View Kinployee Matches", kinployment_nominations_path( @kinployment ), class: 'btn btn-primary'
+
+  div.col-md-12
+    h3 Kinployment Properties
+
+    = render partial: 'kinployment', object: @kinployment
+
+  div.col-md-3
+    h3 Kinployer Properties
+
+    = render partial: 'kinployers/kinployer', object: @kinployer
+
+  div.col-md-9
+    h3 Kinployee Properties
+
+    - if @kinployee
+      = render partial: 'kinployees/kinployee', object: @kinployee
+    - else
+      p style = "color: red;"
+        strong
+          em This Kinployment has not yet been matched with a Kinployee.

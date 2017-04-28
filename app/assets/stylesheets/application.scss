@@ -14,5 +14,11 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "design-elements";
 @import "main";
-@import "pages/homepage"
+@import "cards";
+@import "pages/homepage";
+@import "pages/sessions/login";
+@import "pages/kinployees/new";
+@import "pages/kinployments/new";
+@import "pages/nominations/_nomination";

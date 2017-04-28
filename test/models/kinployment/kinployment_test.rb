@@ -52,47 +52,61 @@ class KinploymentTest < ActiveSupport::TestCase
   # end
 
   ##
-  # #match
+  # #engage
 
   test "must associate the given Kinployee" do
     kinployment = Kinployment.new
     kinployee = Kinployee.new
 
-    kinployment.match( kinployee )
+    kinployment.engage( kinployee )
 
     assert_equal kinployee, kinployment.kinployee
   end
 
+  test "must return the given Kinployment if successful" do
+    kinployment = Kinployment.new
+    kinployee = Kinployee.new
+
+    assert_equal kinployee, kinployment.engage( kinployee )
+  end
+
+  test "must return false if the Kinployment is already engaged" do
+    kinployment = Kinployment.new
+    kinployment.engage( Kinployee.new )
+
+    assert_not kinployment.engage( Kinployee.new )
+  end
+
   ##
-  # #matched?
+  # #engaged?
 
   test "must return true if the Kinployment has an associated Kinployee" do
     kinployment = Kinployment.new
-    kinployment.match( Kinployee.new )
+    kinployment.engage( Kinployee.new )
 
-    assert kinployment.matched?
+    assert kinployment.engaged?
   end
 
   test "must return false if the Kinployment has no associated Kinployee" do
     kinployment = Kinployment.new
-    kinployment.unmatch
+    kinployment.disengage
 
-    assert_not kinployment.matched?
+    assert_not kinployment.engaged?
   end
 
   ##
-  # #unmatch
+  # #disengage
 
   test "must remove the Kinployee association" do
     kinployment = Kinployment.new
     kinployee = Kinployee.new
-    kinployment.match( kinployee )
+    kinployment.engage( kinployee )
 
     result_before = kinployment.kinployee
-    kinployment.unmatch
+    kinployment.disengage
     result_after = kinployment.kinployee
 
-    assert_equal kinployee, result_before
-    assert_equal nil, result_after
+    assert_equal  kinployee, result_before
+    assert_nil    result_after
   end
 end

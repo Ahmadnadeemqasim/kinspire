@@ -1,91 +1,11 @@
 = provide( :page_title, "Home" )
 
-div#homepage.page
+div#homepage.page.col-md-12
 
-  / Section 1
-  section#welcome
-    div.container
-      div.center-2d.text-center
-        h1 Enabling you to find jobs in your commmunity.
-        = link_to "Register & Find a Job", signup_path, class: "btn btn-default"
-        br
-        a href="#employers-1"
-          span.glyphicon.glyphicon-menu-down
-
-  / Section 2
-  section#employers-1
-    div.container
-      h1 Information for Employers
-      div.row
-        div.col-md-4.col-sm-6.col-xs-12
-          div.image-placeholder Image
-          p.text-placeholder
-            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce risus odio, vulputate tincidunt mi quis, maximus accumsan nunc. Praesent et tortor mattis, aliquam tortor eget, vulputate tortor.
-        div.col-md-4.col-sm-6.col-xs-12
-          div.image-placeholder Image
-          p.text-placeholder
-            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce risus odio, vulputate tincidunt mi quis, maximus accumsan nunc. Praesent et tortor mattis, aliquam tortor eget, vulputate tortor.
-        div.col-md-4.col-sm-12.col-xs-12
-          div.image-placeholder Image
-          p.text-placeholder
-            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce risus odio, vulputate tincidunt mi quis, maximus accumsan nunc. Praesent et tortor mattis, aliquam tortor eget, vulputate tortor.
-      div.text-center
-        a href="#employers-2"
-          span.glyphicon.glyphicon-menu-down
-
-  / Section 3
-  section#employers-2
-    div.container.center-2d
-      div.row
-        div.col-md-6
-          div.testimonial-placeholder
-            span.pull-left.glyphicon.glyphicon-thumbs-up
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce risus odio, vulputate tincidunt mi quis, maximus accumsan nunc.
-        div.col-md-6
-          div.testimonial-placeholder
-            span.pull-left.glyphicon.glyphicon-thumbs-up
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce risus odio, vulputate tincidunt mi quis, maximus accumsan nunc.
-      div.row
-        div.col-md-6
-          div.testimonial-placeholder
-            span.pull-left.glyphicon.glyphicon-thumbs-up
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce risus odio, vulputate tincidunt mi quis, maximus accumsan nunc.
-        div.col-md-6
-          div.testimonial-placeholder
-            span.pull-left.glyphicon.glyphicon-thumbs-up
-            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce risus odio, vulputate tincidunt mi quis, maximus accumsan nunc.
-      div.row.action-buttons
-        div.col-md-3.col-xs-0
-        div.col-md-3.col-xs-12
-          = link_to "Register Now", signup_path,  class: "btn btn-default center-block"
-        div.col-md-3.col-xs-12
-          = link_to "Learn More",   "#",          class: "btn btn-default center-block"
-        div.col-md-3.col-xs-0
-      div.text-center
-        a href="#helpers-1"
-          span.glyphicon.glyphicon-menu-down
-
-  / Section 4
-  section#helpers-1
-    div.container
-      h1 Information for Workers
-      div.row
-        div.col-md-4.col-sm-6.col-xs-12
-          div.image-placeholder Image
-          p.text-placeholder
-            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce risus odio, vulputate tincidunt mi quis, maximus accumsan nunc. Praesent et tortor mattis, aliquam tortor eget, vulputate tortor.
-        div.col-md-4.col-sm-6.col-xs-12
-          div.image-placeholder Image
-          p.text-placeholder
-            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce risus odio, vulputate tincidunt mi quis, maximus accumsan nunc. Praesent et tortor mattis, aliquam tortor eget, vulputate tortor.
-        div.col-md-4.col-sm-12.col-xs-12
-          div.image-placeholder Image
-          p.text-placeholder
-            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce risus odio, vulputate tincidunt mi quis, maximus accumsan nunc. Praesent et tortor mattis, aliquam tortor eget, vulputate tortor.
-      div.row.action-buttons
-        div.col-md-3.col-xs-0
-        div.col-md-3.col-xs-12
-          = link_to "Register Now", signup_path,  class: "btn btn-default center-block"
-        div.col-md-3.col-xs-12
-          = link_to "View Jobs",    "#",          class: "btn btn-default center-block"
-        div.col-md-3.col-xs-0
+  div.col-md-3
+  div.col-md-3
+    = link_to "Kinployer Signup", kinployer_signup_path, class: "btn btn-block btn-primary", id: "#btn-kinployer-signup"
+  div.col-md-3
+    = link_to "Kinployee Signup", kinployee_signup_path, class: "btn btn-block btn-primary", id: "#btn-kinployee-signup"
+  div.col-md-3
+  br

@@ -1,17 +1,63 @@
-html, body, div#main, div.page {
+////  
+// Page
+
+html, body, div#main {
   height: 100%;
 }
 
 body {
-  padding-top: 51px;
+  background-color: $margin-color;
+  padding-top:      51px;
 }
 
-.center-2d {
-  // This requires the parent to have:
-  // position: relative;
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate( -50%, -50% );
-  -ms-transform: translate( -50%, -50% );
+header.navbar {
+  background-color: map-get( $color-palette, white );
+  border-bottom:    1px solid map-get( $color-palette, gray );
+}
+
+div.page {
+  background-color: map-get( $color-palette, white );
+  border:           1px solid map-get( $color-palette, gray );
+  margin-top:       20px;
+}
+
+////
+// Buttons
+
+%btn-borders {
+  border-radius:          0px;
+  -moz-border-radius:     0px;
+  -webkit-border-radius:  0px;
+}
+
+.btn-danger {
+  @extend %btn-borders;
+  border:           none;
+}
+
+.btn-default {
+  @extend           %btn-borders;
+  background-color: map-get( $color-palette, white );
+  border:           1px solid $border-color;
+}
+
+.btn-primary {
+  @extend           %btn-borders;
+  background-color: $call-to-action-color;
+  border:           none;
+}
+
+////
+// Forms
+
+input {
+  border: 1px solid map-get( $color-palette, gray );
+}
+
+input[type="checkbox"], input[type="radio"] {
+  margin-right:  10px;
+}
+
+input[type="submit"] {
+  @extend .btn-primary;
 }

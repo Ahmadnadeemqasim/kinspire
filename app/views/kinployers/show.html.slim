@@ -1,0 +1,28 @@
+= provide( :page_title, "#{@user.name}" )
+
+div#kinployers-show.page.col-md-12
+
+  h1 = @user.name
+  p
+    strong Kinployer
+  hr
+
+  h3 Actions
+
+  p
+    = "Welcome to #{Company.string( :company_name )}!"
+    br
+    | Get started by 
+    strong
+      = link_to "Creating a job", new_kinployment_path
+    | !
+
+  hr
+  h3 Kinployer Properties
+
+  = render partial: 'kinployer', object: @kinployer
+
+  hr
+  h3 Kinployments
+
+  = render partial: 'kinployments/kinployment', collection: @kinployer.kinployments

@@ -1,0 +1,48 @@
+div#_kinployee.card.col-md-12
+
+  div.card-header
+    div.card-title = link_to kinployee.user.name, kinployee
+
+  div.card-content.row
+    div.col-md-3
+
+      div.attribute
+        div.key User Email:
+        div.value = kinployee.user.email
+
+      div.attribute
+        div.key Location:
+        div.value = "#{kinployee.location[:city]}, #{kinployee.location[:state]}"
+
+      div.attribute
+        div.key Sex:
+        div.value = kinployee.sex
+
+      div.attribute
+        div.key Availability:
+        div.value = kinployee.availability
+
+    div.col-md-3
+
+      div.attribute
+        div.key Skills:
+        - kinployee.skills.each do |skill|
+          div.value = skill
+
+    div.col-md-3
+    
+      div.attribute
+        div.key Languages:
+        - kinployee.languages.each do |language|
+          div.value = language
+
+    div.col-md-3
+
+      div.attribute
+        div.key Culture Match Preference:
+        div.value = kinployee.culture_match_preference
+
+      div.attribute
+        div.key Cultural Backgrounds:
+        - kinployee.cultural_backgrounds.each do |cultural_background|
+          div.value = cultural_background

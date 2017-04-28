@@ -10,21 +10,22 @@ class Kinployment < ApplicationRecord
   ##
   # Assign a Kinployee to this Kinployment.
 
-  def match( kinployee )
+  def engage( kinployee )
+    return false if engaged?
     self.kinployee = kinployee
   end
 
   ##
-  # Indicate whether this Kinployment has been matched with a Kinployee.
+  # Indicate whether this Kinployment is engaged with a Kinployee.
 
-  def matched?
+  def engaged?
     !!kinployee
   end
 
   ##
   # Unassign the associated Kinployee, if it exists.
 
-  def unmatch
+  def disengage
     self.kinployee = nil
   end
 end

@@ -14,8 +14,8 @@ class Kinployment
   class Nomination
     include Comparable
 
-    class MissingOverallScoreError < ArgumentError; end
-    class ScoreOutOfRangeError < ArgumentError; end
+    class MissingOverallScoreError  < Exceptions::ScoringError; end
+    class ScoreOutOfRangeError      < Exceptions::ScoringError; end
 
     attr_reader :kinployment, :kinployee
 

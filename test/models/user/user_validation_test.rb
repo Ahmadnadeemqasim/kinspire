@@ -4,6 +4,7 @@ class UserValidationTest < ActiveSupport::TestCase
 
   def setup
     @user = User.new( email: "masterchief@unsc.mil",
+                      name: "John Smith",
                       password: standard_password, password_confirmation: standard_password,
                       role: 'admin' )
   end
@@ -59,6 +60,14 @@ class UserValidationTest < ActiveSupport::TestCase
   end
 
   ##
+  # Name
+
+  test "name should be required present and not blank" do
+    @user.name = ""
+    assert_not @user.valid?, "Blank User name should not be valid."
+  end
+
+  ##
   # Password
 
   test "password should be required present and not blank" do
@@ -89,7 +98,7 @@ class UserValidationTest < ActiveSupport::TestCase
   test "password should not be required for an existing record" do
     @user.save
     existing_user = User.find( @user.id )
-    assert_equal nil, existing_user.password
+    assert_nil existing_user.password
     assert existing_user.valid?, "Existing Users should not require a password to be valid."
   end
 
