@@ -1,6 +1,6 @@
 ## What is This?
 
-During late 2016/early 2017 I worked with a diverse and ambitious team based in San Francisco on a startup idea that was geared towards helping new immigrants to the United States find meaningful work and get on their feet in America quickly.
+During late 2016 and early 2017 I worked with a diverse and ambitious team based in San Francisco on a startup that was geared towards helping new immigrants to the United States find meaningful work and get on their feet in America quickly.
 
 The project was fundamentally a job-matching web platform, with a focus on cultural sensitivity and the specific needs of immigrants.
 
@@ -19,11 +19,11 @@ The platform matches users to jobs based on the following six dimensions:
 - sex
 - skills
 
-Please see the files located in `app/services/kinployment` for the matching system. Although the first version of the scoring algorithm is quite simple, the system was architected to allow easy modification and improvement as the team's understanding of business needs improved.
+The platform uses a scoring engine to generate a list of matches sorted by overall match score. This is utilized in the controller action `NominationsController#index`. The scoring engine itself can be found in the `app/services/kinployment` directory. All components are comprehensively unit tested. The system was architected in a modular fashion, to allow easy modification or replacement of matching logic as the team's understanding of business needs improved.
 
 ## To Run
 
-Please see `developer_installation.md` for detailed instructions for installing and running the platform.
+Please see `developer_installation.md` for detailed instructions on installing and running the platform.
 
 ## Copyright
 
