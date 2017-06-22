@@ -6,7 +6,7 @@ The project was fundamentally a job-matching web platform, with a focus on cultu
 
 I headed the engineering efforts for the project during its earliest stages, while the team was all-volunteer, and unincorporated. My goal was to deliver a prototype platform that included real job-matching capability. As job-matching was the core value proposition of this platform, and the primary engineering challenge, it made sense to focus on demonstrating to funders that we were capable of delivering this requirement over the other, less technically-challenging features that are common in web applications.
 
-I left the project before it was incorporated and my work was never used. I am publishing it here as part of my professional portfolio.
+I left the project before it was incorporated. I am publishing my work here as part of my professional portfolio.
 
 ## Matching System
 
